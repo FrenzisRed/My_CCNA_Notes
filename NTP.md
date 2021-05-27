@@ -98,9 +98,9 @@ NOTE: a reference clock is usually a very accurate time device like an atomic Cl
 
 To configure NTP use the command below, more then one server can be added:
 
-  ntp server IPADDRESS1
-  ntp server IPADDRESS2
-  ntp server IPADDRESS..
+    ntp server IPADDRESS1
+    ntp server IPADDRESS2
+    ntp server IPADDRESS..
 
 The one that will be used will be automatically selected by the response time.
 In case it will slow down or not respond at all, it will automatically switch to
@@ -108,7 +108,7 @@ another given server.
 
 If you want to manually specify a preferred server, just add prefer after the IP:
 
-  ntp server IPADDRESS prefer
+    ntp server IPADDRESS prefer
 
 To see the current state use the command "show ntp associations".
 
@@ -131,9 +131,9 @@ Now to check clock and calendar details use the "do show clock detail" command.
 
 Be aware that:
 
-  NTP use only the UTC timezone, you must configure the appropriate
-  time zone on each device.
-  NTP does not update the calendar by default. Do it via "ntp update-calendar"
+    NTP use only the UTC timezone, you must configure the appropriate
+    time zone on each device.
+    NTP does not update the calendar by default. Do it via "ntp update-calendar"
 
 Why to sync the hardware clock? Because it tracks the date and time on the device
 even if it restarts, power is lost, etc.. When the system is restarted, the hardware
@@ -145,10 +145,10 @@ But in bigger Networks you would use internal routers to be servers for the othe
 
 To start you should configure a loopback address on the 'server router':
 
-  interface loopback0
-  ip address 10.1.1.1 255.255.255.255
-  exit
-  ntp source loopback0  (this will be the source of the NTP messages for the network)
+    interface loopback0
+    ip address 10.1.1.1 255.255.255.255
+    exit
+    ntp source loopback0  (this will be the source of the NTP messages for the network)
 
 Why do we use a loopback? Because in the case of a failure in the shortest path,
 The loopback address will still be advertised by the other routers and will
@@ -161,11 +161,11 @@ Now, what if we do not sync to an NTP server, but we want our routers to sync?
 
 We use the command "NTP master" to create a master clock in our network:
 
-  ntp master [stratus level] # default level is 7
+    ntp master [stratus level] # default level is 7
 
 To configure symmetric active mode on same level of Stratum use these commands:
 
-  ntp peer IPADDRESS
+    ntp peer IPADDRESS
 
 This helps for precision and backup
 
@@ -174,17 +174,17 @@ This allows NTP clients to ensure they only sync to the intended servers.
 
 To configure the NTP authentication use:
 
-  ntp authenticate # enable authentication
+    ntp authenticate # enable authentication
 
-  ntp authenticate-key 'key-number' md5 key # creation of keys
+    ntp authenticate-key 'key-number' md5 key # creation of keys
 
 key-number is the reference you give it
 key is the password itself
 
 Then you need to specify what key/keys are trusted via the command:
 
-  ntp trusted-key 'key-number'
+    ntp trusted-key 'key-number'
 
 Then you specify which key to use for each server:
 
-  ntp server IPADDRESS key 'key-number' #not needed on the server itself
+    ntp server IPADDRESS key 'key-number' #not needed on the server itself
