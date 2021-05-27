@@ -161,7 +161,7 @@ Now, what if we do not sync to an NTP server, but we want our routers to sync?
 
 We use the command "NTP master" to create a master clock in our network:
 
-    ntp master [stratus level] # default level is 7
+    ntp master [stratus level] # default level is 8
 
 To configure symmetric active mode on same level of Stratum use these commands:
 
