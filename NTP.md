@@ -20,11 +20,15 @@ Manual configuration, some commands:
   With "show clock detail" you can see the time source
 
   To manually configure the time use the "clock set" command.
+
     structure of the command:
+
       clock set H:M:S DAY Month Year
 
   To manually configure the Hardware clock use the "calendar set" command.
+
     Structure of the command:
+
       calendar set H:M:S DAY Month Year
 
   To sync the calendar to the clock use "clock update-calendar" command.
@@ -35,11 +39,14 @@ Be aware that the timezone must be set while global config mode as it's part of
 the running device. All the rest is done in privilege exec mode.
 
   command structure:
+
     clock timezone ZONENAME OFFSET
 
 Setting automatic daylight saving time if needed:
+
   "clock summer-time" from global config mode
    Structure:
+
       clock summer-time TIMEZONENAME DATE/Recurring Week WeekDay Month HOUR WEEK WeekDay Month HOUR [OFFSET]
 
     Options:
@@ -53,6 +60,7 @@ Setting automatic daylight saving time if needed:
 
     Example, let's set it to occur on the second week of March on Sunday at 2:00
     and stop the First week of November at 2:00:
+
       Clock summer-time EU recurring 2 Sunday March 2:00 1 Sunday November 2:00
 
 
@@ -71,6 +79,7 @@ original reference clock is called "stratum".
 NTP use UDP port 123
 
 NOTE: a reference clock is usually a very accurate time device like an atomic Clock
+
       or a GPS clock.
       Reference clocks are Stratum 0 within the NTP hierarchy.
       NTP servers directly connected to reference clocks are Stratum 1.
@@ -78,26 +87,33 @@ NOTE: a reference clock is usually a very accurate time device like an atomic Cl
       syncronise to it.
       Same level Stratum can be connected to each other, calling this "symmetric active" mode.
       Cisco can operate in 3 NTP modes:
+
         Server mode
         Client mode
         Symmetric active mode
+
       They can bee in all modes at the same time.
 
       Stratus 1 are primary servers, the others are simply secondary servers.
 
 To configure NTP use the command below, more then one server can be added:
+
   ntp server IPADDRESS1
   ntp server IPADDRESS2
   ntp server IPADDRESS..
+
 The one that will be used will be automatically selected by the response time.
 In case it will slow down or not respond at all, it will automatically switch to
 another given server.
 
 If you want to manually specify a preferred server, just add prefer after the IP:
+
   ntp server IPADDRESS prefer
 
 To see the current state use the command "show ntp associations".
+
 Example:
+
     address:        ref clock   st  when  poll  reach delay     OFFSET    disp
   *~216.239.35.0    .GOOG.      1   43    64    17    62.007    1401.54   0.918
   +~216.239.35.8    .GOOG.      1   43    64    17    64.220    1415.54   0.939
@@ -114,6 +130,7 @@ Use "show ntp status" command to check status.
 Now to check clock and calendar details use the "do show clock detail" command.
 
 Be aware that:
+
   NTP use only the UTC timezone, you must configure the appropriate
   time zone on each device.
   NTP does not update the calendar by default. Do it via "ntp update-calendar"
@@ -125,7 +142,9 @@ clock is used to initialize the software clock.
 In small Networks we would just configure all device to sync to public NTP servers
 like Google's.
 But in bigger Networks you would use internal routers to be servers for the other ones.
+
 To start you should configure a loopback address on the 'server router':
+
   interface loopback0
   ip address 10.1.1.1 255.255.255.255
   exit
@@ -141,27 +160,31 @@ sync with our NTP server.
 Now, what if we do not sync to an NTP server, but we want our routers to sync?
 
 We use the command "NTP master" to create a master clock in our network:
+
   ntp master [stratus level] # default level is 7
 
 To configure symmetric active mode on same level of Stratum use these commands:
+
   ntp peer IPADDRESS
+
 This helps for precision and backup
 
 NTP authentication is the last part of NTP configuration and it's optional.
 This allows NTP clients to ensure they only sync to the intended servers.
+
 To configure the NTP authentication use:
+
   ntp authenticate # enable authentication
+
   ntp authenticate-key 'key-number' md5 key # creation of keys
+
 key-number is the reference you give it
 key is the password itself
+
 Then you need to specify what key/keys are trusted via the command:
+
   ntp trusted-key 'key-number'
+
 Then you specify which key to use for each server:
+
   ntp server IPADDRESS key 'key-number' #not needed on the server itself
-
-
-
-
-
-See device logs:
-  show logging
