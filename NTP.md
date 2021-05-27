@@ -79,8 +79,8 @@ original reference clock is called "stratum".
 NTP use UDP port 123
 
 NOTE: a reference clock is usually a very accurate time device like an atomic Clock
-
       or a GPS clock.
+
       Reference clocks are Stratum 0 within the NTP hierarchy.
       NTP servers directly connected to reference clocks are Stratum 1.
       It goes up to stratum 15, over 15 is considered unreliable, the NTP will not
@@ -114,10 +114,10 @@ To see the current state use the command "show ntp associations".
 
 Example:
 
-    address:        ref clock   st  when  poll  reach delay     OFFSET    disp
-  *~216.239.35.0    .GOOG.      1   43    64    17    62.007    1401.54   0.918
-  +~216.239.35.8    .GOOG.      1   43    64    17    64.220    1415.54   0.939
-  ...
+    address:        ref clock    st  when  poll  reach  delay     OFFSET    disp
+    *~216.239.35.0    .GOOG.      1   43    64    17    62.007    1401.54   0.918
+    +~216.239.35.8    .GOOG.      1   43    64    17    64.220    1415.54   0.939
+    ...
 
 This will show you the list of used servers.
 An asterisk (*) will show the one NTP is using.
