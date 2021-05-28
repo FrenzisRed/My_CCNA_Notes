@@ -227,3 +227,22 @@ Once in the interface we need only one command:
 
 We can verify the good configuration checking the interface with the do show ip
 interface command.
+
+If we check the configuration of the interface we shoulf find this line that will
+tell us it's well configured:
+
+    Helper address is GIVEN_IP
+
+One last thing as a Cisco router can be a DHCP client, meaning it can use DHCP
+to configure the IP address of its interfaces. This is pretty rare as network
+devices will be manually configured with fixed IPs. But if we need this, here
+is how it's done:
+
+Let's make the router a DHCP client on g0/1 interface, in config mode:
+
+    ip address dhcp
+
+Done, now the router will broadcast a discover message from the DHCP server.
+If you check the interface with the command do show ip interface g0/1 we shoud see:
+
+    Address determinated by DHCP
