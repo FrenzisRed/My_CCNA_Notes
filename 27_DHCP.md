@@ -26,7 +26,7 @@ In larger Networks, the DHCP server is usually a Windows/Linux server.
 
 <h5>Basic Functions:</h5>
 
-#### Wireshark is higly recommended to capture and follow along
+#### <h4 align="center">Wireshark is higly recommended to capture and follow along</h4>
 
 In windows, with command ipconfig /all you can check if it's enable or not
 
@@ -103,26 +103,127 @@ Let's use an example of renewing an IP address.
         Finally, in the options we can notice the option 51 that indicates the
         lease time, option 6 is 'domain name server' that's the DNS server, and
         option 3 is 'router', which tells the client the default gateway.
+        I had a look for my curiosity only, this is not needed in the CCNA exam.
+
+    3rd message: DHCP Request message.
+
+      It is sent from the DHCP client to the server, telling the server that it
+      want to use the IP address it was offered. This is important as there may
+      be multiple DHCP servers on the local network, and all of them will reply
+      to the client's Discover message with an Offer. The client has to tell which
+      server it is accepting the offer from and request to use that IP address.
+      Typically, the client will accept the first Offer it receives.
+
+      Let's look at that request message in Wireshark:
+        Once again in layer two it's a broadcast message. If there are multiple
+        DHCP servers in the Network, all of them will receive this message.
+        One of the later fields will indicate which server the PC accepted the
+        offer from.
+
+        The source IP still 0.0.0.0 as the offer is not been configured yet.
+
+        In the request message, we find again the flags field telling the server
+        to send its messages using unicast, even if the client is actually using
+        broadcast. In the option we can mention option 54 that gives the server
+        address. If there are multiple DHCP servers on the local network, this is
+        how the client says which server it selected.
+
+    4th message: The DHCP Ack, acknowledgement.
+
+      This is sent from the server to the client, confirming that the client may
+      use the requested IP address. Once this message is received the client finally
+      configures the IP address on its network interface.
+
+      In Wireshark we can note:
+        On layer 2 and 3 destinations addresses are unicast.
+        In the Ack message the bootp flags field still on unicas because the client
+        requested unicast messages. Just like the DHCP Offer message, the DHCP Ack
+        message can be either unicast or broadcast, depending on what client requests.
 
 
 
-If we capture the release of an IP address with wiresherk we can notice that an IPv4
+If we capture the release of an IP address with Wireshark we can notice that an IPv4
 header is inside from PC to router.
 
-Inside you have an UDP header, notice the ports, source port 68, destination port 67.
-DHCP servers use UDP 67 and DHCP clients use UDP 68.
-As an example in DNS only the server port is decided, the client uses an ephemeral port.
+    Inside you have an UDP header, notice the ports, source port 68, destination port 67.
+    DHCP servers use UDP 67 and DHCP clients use UDP 68.
+    As an example in DNS only the server port is decided, the client uses an ephemeral port.
 
-Inside the UDP segment we have the release message. The client IP is indicated here.
-Notice these 'options' inside at the bottom. DHCP has varous options used for
-different purposes. For example option 53 indicate what kind of message it is.
+    Inside the UDP segment we have the release message. The client IP is indicated here.
+    Notice these 'options' inside at the bottom. DHCP has varous options used for
+    different purposes. For example option 53 indicate what kind of message it is.
 
-Note in your capture, just above the options, you have the magic cookie.
-This comes from the BOOTP that has identical header. The magic cookie make it
-possible to identify that the message comes from DHCP.
+    Note in your capture, just above the options, you have the magic cookie.
+    This comes from the BOOTP that has identical header. The magic cookie make it
+    possible to identify that the message comes from DHCP.
 
+Now let's talk about the <h5>DHCP relay</h5>.
+It is possible to configure  routers to act as the DHCP server for its connected LANs
+However in large enterprises it's better to have a centralized DHCP server, which
+will be assign IP addresses to DHCP clients in all subnets throughout the enterprise
+network.
 
-
+If the server is centralized, it won't receive the DHCP clients broadcast DHCP
+messages as broadcast messages do not leave the local subnet, routers do not
+foward them. However to fix this we can configure a router to act as a
+DHCP relay agent. If we do so, the router will foward the clients Broadcast
+DHCP messages to the remote DHCP server as unicast messages. This is easily
+done with one command. I keep all the command for configuration together in the
+section below.
 
 
 <h4 align="center">Configuring DHCP in Cisco IOS: </h4>
+
+Let's configure a router to be a DHCP server:
+
+    ip dhcp excluded-address IP-RANGE # lower ip - higher ip of the range
+
+This command will crete a list of IPs that will be excluded and not given to clients
+Always usefull to reserve IPs for configuration uses.
+
+Now to create a pool do:
+
+    ip dhcp pool POOLNAME # always good to give clear name to organize.
+
+It's a good practice to create separated pools for each network the router is
+acting as a DHCP server for.
+
+To specify the range of addresses to assign to clients di:
+
+    network STARTIP NETWORKMASK/PREFIX  
+
+Then we should configure the DNS server that clients should use:
+
+    dns-server IPofSERVER
+
+The we can configure the domain of the network:
+
+    domain-name DOMAINNAME
+
+Then we do the default router command for the getaway:
+
+    default-router IPADDRESS
+
+And let's set the lease time:
+
+    lease DAYS HOURS MINUTES
+
+We can use infinite too, but it's not recommended.
+
+    lease infinite
+
+Use the following command to show all DHCP clients that have IP addresses:
+
+    show ip dhcp binding
+
+Now let's see the relay agent:
+
+    to configure the router into been a relay agant we need to configure it in
+    the interface that the subnet with the clients is connected to.
+
+Once in the interface we need only one command:
+
+    ip helper-address DHCPSERVERIP
+
+We can verify the good configuration checking the interface with the do show ip
+interface command.
