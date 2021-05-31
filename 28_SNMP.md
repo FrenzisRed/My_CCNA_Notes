@@ -62,15 +62,40 @@ How does it works?
 Two main components in the NMS:
 The NMS is probably just the admin pc with a NMS software
 
-    the <h5>NMS Manager</h5> is the software on the NMS that interacts with the managed devices.
+    The NMS Manager is the software on the NMS that interacts with the managed devices.
     It receives notifications, sends requests for information, send configuration
     changes, etc..
 
-    The <h5>SNMP Application</h5> provides an interface for the network admin to interact with.
+    The SNMP Application provides an interface for the network admin to interact with.
     It display alerts, statistics, charts, etc..
+
+In the managed devices there are as well two components:
+
+    SNMP Agent is the SNMP software running on the managed devices that interacts
+    with the SNMP Manager on the NMS.
+    It sends notifications or receive messages from the NMS.
+
+    The Management Information Base (MIB) is the structure that contains the variables
+    that are managed by SNMP. Each variable is defined with an Object ID (OID)
+    Some variables contain Interface status, traffic throughput, CPU usage, temp..
+
+SNMP Objects IDs are organized in an hierarchical structure.
+Example of an OID and Breakdown:
+
+    .1.3.6.1.2.1.1.5
+
+    .ISO.Identified-organization.dod.internet.mgmt.mib-2.system.sysName.
+
+The OID is used to identify the system name, the host name, of the managed device.
+
+More information on oid-info.com but not necessary for the CCNA.
 
 
 <h4 align="center">Versions</h4>
+
+
+
+
 
 
 <h4 align="center">Messages</h4>
