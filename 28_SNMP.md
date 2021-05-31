@@ -25,15 +25,15 @@ the SNMP 'server' although typically we would just call it NSM instead.
 
 Little example using this network:
 
-----------           --------              --------               -------
-| internet|----------| Router|-------------|Switch|---------------| PC1 |
-----------           ---------             --------      |        -------
-                                               |         |________| PC2 |
-                                               |         |         ------
-                                               |         |________| PC3 |
-                                           ------------            ------
-                                           |NMS Server|
-                                           ------------
+    ----------           --------              --------               -------
+    | internet|----------| Router|-------------|Switch|---------------| PC1 |
+    ----------           ---------             --------      |        -------
+                                                   |         |________| PC2 |
+                                                   |         |         ------
+                                                   |         |________| PC3 |
+                                              ------------            ------
+                                              |NMS Server|
+                                              ------------
 
 
 <h4 align="center">Versions</h4>
