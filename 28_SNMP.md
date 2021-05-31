@@ -26,7 +26,7 @@ Type one are devices like routers or switches.
 Type two are the Devices managing the managed type one devices. This is called
 the SNMP 'server' although typically we would just call it NSM instead.
 
-Little example using this network:
+let's use this example network to demonstrate how NMS works:
 
     ----------           --------              --------               -------
     | internet|----------| Router|-------------|Switch|---------------| PC1 |
@@ -34,9 +34,40 @@ Little example using this network:
                                                    |         |________| PC2 |
                                                    |         |         ------
                                                    |         |________| PC3 |
-                                              ------------            ------
+                                              ------------             ------
                                               |NMS Server|
                                               ------------
+In this network we have a router connecting to the internet and back to a switch
+connected to a NMS server and 3 PCs.
+
+Here we are using NMS to manage the router and the switch.
+
+The three main operations we are looking at are:
+
+    1) Managed devices can notify the NMS of events, for example switch port to
+       PC1 has a failure and the status goes to down. The switch can send a Messages
+       to the NMS telling it that the port has gone down.
+
+The actual NMS might be configured to notify the network administrator on events.
+
+    2) The NMS can ask the managed devices for information about their status.
+       For example, NMS could ask the router what is its current CPU usage.   
+
+    3) NMS tells the managed devices to change aspects of their configuration.
+       For example, the NMS could ask the router to change the IP address of one
+       of its interfaces.
+
+How does it works?
+
+Two main components in the NMS:
+The NMS is probably just the admin pc with a NMS software
+
+    the <h5>NMS Manager</h5> is the software on the NMS that interacts with the managed devices.
+    It receives notifications, sends requests for information, send configuration
+    changes, etc..
+
+    The <h5>SNMP Application</h5> provides an interface for the network admin to interact with.
+    It display alerts, statistics, charts, etc..
 
 
 <h4 align="center">Versions</h4>
