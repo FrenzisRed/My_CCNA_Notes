@@ -20,7 +20,21 @@ There are two main types of devices in SNMP, the managed devices and the network
 management station (NMS).
 
 Type one are devices like routers or switches.
-Type two are the Devices managing the managed type one devices.
+Type two are the Devices managing the managed type one devices. This is called
+the SNMP 'server' although typically we would just call it NSM instead.
+
+Little example using this network:
+
+----------           --------              --------               -------
+| internet|----------| Router|-------------|Switch|---------------| PC1 |
+----------           ---------             --------      |        -------
+                                               |         |________| PC2 |
+                                               |         |         ------
+                                               |         |________| PC3 |
+                                           ------------            ------
+                                           |NMS Server|
+                                           ------------
+
 
 <h4 align="center">Versions</h4>
 
