@@ -5,10 +5,13 @@
 SNMP is an industry standard framework and protocol that was originally released
 in 1988. It is not a single protocol, it fits into a larger framework of networks
 management, as well referred to as SNMP framework.
+
 The first RFC (request for comment, used by the IETF -Internet Engineering Task Force)
 was the 1065, structure and identification of management for TCP/IP based internets.
+
 The second RFC was the 1066, management information based for networks management
 of TCP/IP based internets.
+
 The third was 1067, a simple network management protocol.
 
 These 3 RFC are the SNMP V1.
