@@ -97,9 +97,9 @@ There are several versions of the SNMP, but only 3 have achieved wide-spread use
 
 <h5>SNMPv1</h5> The original one.
 
-<h5>SNMPv2c</h5> It allows NMS to retrieve large amount of information in a single
+<h5>SNMPv2c</h5>It allows NMS to retrieve large amount of information in a single
 request, so it is more efficient and it produce less network traffic.
-The <h5>c</h5> refers to 'community strings' used as passwords in SNMPv1, removed
+The 'c' refers to 'community strings' used as passwords in SNMPv1, removed
 in SNMPv2, and then added back for SNMPv2c.
 
 <h5>SNMPv3</h5> A much more secure version of SNMP that supports strong encryption
