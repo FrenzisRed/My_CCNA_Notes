@@ -161,3 +161,38 @@ updates allow agents to send Inform messages to managers. Still UDP.
 
 
 <h4 align="center">Basic Configuration</h4>
+
+Configuring SNMP is out of the scope of the CCNA. Definitely the NMS configuration,
+but here is a little SNMP agent configuration information. Let's take the previous
+network topology.
+For example, to  configure the router to be a SNMP agent we can use these commands:
+
+Create community strings:
+
+    snmp-server community STRING ro/rw #ro = Read only, rw = read/write
+
+If the NMS try to use a string with 'ro' value, it will not be able to use the
+'set' command to change configuration.
+
+Then specify the address of the NMS, Server1, at its IP:
+
+    snmp-server host IP version 2c STRING
+
+In the above command we can specify not only the server, but as well what version
+and community string to use.
+
+Next step is to configure what kind of 'Traps' to send to the NMS:
+
+    snmp-server enable traps snmp linkdown linkup #status changes on interfaces
+
+    snmp-server enable traps config #Notify for any config changes
+
+OPTIONALS:
+
+Configure a contact:
+
+    snmp-server contact admin@admin.com
+
+Configure location:
+
+    snmp-server location SITELOCATION
