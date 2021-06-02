@@ -90,6 +90,11 @@ The OID is used to identify the system name, the host name, of the managed devic
 
 More information on oid-info.com but not necessary for the CCNA.
 
+SNMP ports are:
+
+    SNMP Agent   = UDP 161
+    SNMP Manager = UDP 162
+
 
 <h4 align="center">Versions</h4>
 
@@ -140,5 +145,19 @@ message (introduced in SNMPv2).
 <strong>Set</strong>: A request sent from the manager to the agent to change the
 value of one or more variables. The agent will send a _Response_ message with
 the new values.
+
+<strong>Trap</strong>: A notification sent from the agent to the manager. The
+manager does not send a _Response_ message to acknowledge that it received the
+Trap, so these messages are 'unreliable'. Worth noting that SNMP uses UDP and
+not TCP, so there are no retransmissions. This type will probably appear as an
+alert on the server, or might trigger an email to the administrator.
+
+<strong>Inform</strong>: A notification message that is acknowledged with a
+_Response_message. Originally used for communications between managers, but later
+updates allow agents to send Inform messages to managers. Still UDP.
+
+<strong>Response</strong>: A message to respond to previous messages.
+
+
 
 <h4 align="center">Basic Configuration</h4>
