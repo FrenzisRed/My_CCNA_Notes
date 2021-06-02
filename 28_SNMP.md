@@ -107,8 +107,10 @@ and authentication/ Whenever possible, this version should be used.
 This security makes it possible to have only the SNMP intended devices are able
 to read the messages, they can't be interpreted and read by an attacker
 
+<h4 align="center">Messages</h4>
+
     --------------------------------------------------------------------------------
-    Messages Class|                   Description                         Messages 
+    Messages Class|                   Description                         Messages
     --------------------------------------------------------------------------------
       Read        | Messages sent by NMS to read information from       |get,GetNext
                   | the managed devices. (ie. What's your CPU usage?)   |GetBulk
@@ -123,7 +125,20 @@ to read the messages, they can't be interpreted and read by an attacker
                   |Message/Request                                      |
     --------------------------------------------------------------------------------
 
-<h4 align="center">Messages</h4>
+More in depth:
 
+<strong>Get</strong>: A request from the manager to the agent to retrieve the value
+of a variable (OID), or multiple variables. The agent will send a _Response_ messages
+with the current value of each variable.
+
+<strong>GetNetx</strong>: A request sent from the manager to the agent to discover
+the available variables in the MIB.
+
+<strong>GetBulk</strong>: A more efficient version of <strong>GetNext</strong>
+message (introduced in SNMPv2).
+
+<strong>Set</strong>: A request sent from the manager to the agent to change the
+value of one or more variables. The agent will send a _Response_ message with
+the new values.
 
 <h4 align="center">Basic Configuration</h4>
