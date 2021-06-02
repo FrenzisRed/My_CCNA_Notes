@@ -107,10 +107,21 @@ and authentication/ Whenever possible, this version should be used.
 This security makes it possible to have only the SNMP intended devices are able
 to read the messages, they can't be interpreted and read by an attacker
 
-
-
-
-
+    --------------------------------------------------------------------------------
+    Messages Class|                   Description                         Messages 
+    --------------------------------------------------------------------------------
+      Read        | Messages sent by NMS to read information from       |get,GetNext
+                  | the managed devices. (ie. What's your CPU usage?)   |GetBulk
+    --------------------------------------------------------------------------------
+      Write       |Messages sent by the NMS to change information on the|  set
+                  |managed devices. (ie. change IP address)             |
+    --------------------------------------------------------------------------------
+     Notification |Messages dent by the managed devices to alert the NMS|   Trap
+                  |of a particular event.(ie. interface going down)     |  Inform
+    --------------------------------------------------------------------------------
+     Response     |Messages sent in response to a previous              | Response
+                  |Message/Request                                      |
+    --------------------------------------------------------------------------------
 
 <h4 align="center">Messages</h4>
 
