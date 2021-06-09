@@ -1,4 +1,4 @@
-<h2 align="center">SSH = Secure Shell</h2>
+<h2 align="center">SSH = Secure Shell + General Security</h2>
 
 
 <h4 align="center">Console Port Security</h4>
@@ -36,9 +36,50 @@ the configured usernames on the device. Here is how:
 
     router(config-line)#end
 
+Another important command is the:
+
+    exec-timeout
+
+This will cause the device to log the user out after a certain time of inactivity.
+
 
 <h4 align="center">Layer2 switch management IP</h4>
 
+Routers and Layer3 Switches have IP addresses we can use to connect remotely to
+manage the devices.
+For Layer2 switches we can set up a SVI with an IP address so we can connect to
+the switch CLI console remotely using SSH or Telnet.
+
+For the rest of the notes I'm using this network topology:
+
+
+    -------   ---------   ----------    ----------    ---------        -------
+    | PC1 |---|Switch1|---| Router1|----| Router2|----|Switch2|--------| PC2 |
+    -------   ---------   ----------    ----------    ---------        -------
+
+The Network Admin will be using PC2
+
+Reminder to configure an SVI you need these commands:
+
+    Swithc(config)#interface vlanID
+
+    Swithc(config-if)#ip address IPADDRESS MASK
+
+    Swithc(config-if)#no shutdown
+
+    Swithc(config-if)#exit
+
+    Swithc(config)#ip default-getaway GETAWAYIPADDRESS
+
+Here we are configuring an IP address on the SVI as we do for a multilayer switch
+
+We configure the switch default gateway on Switch1 as PC2 is not in the same LAN.
+Swithc2 does not need that as it's in the same LAN as PC2.
+
 <h4 align="center">Telnet</h4>
+
+First of all note that Telnet has a lack of security and it's not been used widely
+anymore. Telnet (teletype network) is a protocol used to remotely access CLI of
+a remote host.
 
 <h4 align="center">SSH</h4>
