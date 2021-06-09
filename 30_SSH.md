@@ -61,15 +61,15 @@ The Network Admin will be using PC2
 
 Reminder to configure an SVI you need these commands:
 
-    Swithc(config)#interface vlanID
+    Switch(config)#interface vlanID
 
-    Swithc(config-if)#ip address IPADDRESS MASK
+    Switch(config-if)#ip address IPADDRESS MASK
 
-    Swithc(config-if)#no shutdown
+    Switch(config-if)#no shutdown
 
-    Swithc(config-if)#exit
+    Switch(config-if)#exit
 
-    Swithc(config)#ip default-getaway GETAWAYIPADDRESS
+    Switch(config)#ip default-getaway GETAWAYIPADDRESS
 
 Here we are configuring an IP address on the SVI as we do for a multilayer switch
 
@@ -79,7 +79,123 @@ Swithc2 does not need that as it's in the same LAN as PC2.
 <h4 align="center">Telnet</h4>
 
 First of all note that Telnet has a lack of security and it's not been used widely
-anymore. Telnet (teletype network) is a protocol used to remotely access CLI of
+anymore. It sends data in plain text, no encryption!
+Telnet (teletype network from 1969) is a protocol used to remotely access CLI of
 a remote host.
 
+For information only, here is how to configure a device for Telnet connections:
+
+    Switch(config)#enable secret PASSWORD
+
+If no password is set, Telnet cannot be enabled tu use privileged exec mode.
+
+    Switch(config)#username USERNAME secret password
+
+This allows us as seen before to do a username and password log in.
+
+    Switch(config)#access-list 1 permit host PC2IP
+
+This is not necessary, but limiting the access to the VTY lines is always better.
+(VTY = Virtual TeleType)
+
+    Switch(config)#line vty 0 15
+
+Telnet/SSH access id configured on the VTY lines. There are 16 lines available,
+so up to 16 users can be connected at the same time.
+
+    Switch(config-line)#login local
+
+    Switch(config-line)#exec-timeout 5 0
+
+    Switch(config-line)#transport input telnet
+
+this allows only Telnet connections, other interesting lines are:
+
+    transport input ssh
+
+    transport input telnet ssh
+
+    transport input all
+
+    transport input none
+
+I think it's pretty self explanatory.
+
+    Switch(config-line)#access-class 1 in
+
+Last one to apply the ACL input so that only PC2 will be able to connect to the CLI.
+
 <h4 align="center">SSH</h4>
+
+SSH (secure shell) was developed in 1995 to replace less secure protocols like Telnet.
+
+SSHv2, a major revision of SSH, was released in 2006.
+
+If a device supports both versions it is said to run version  1.99
+
+SHH provides security features like data encryption and authentication.
+
+Before configuring SSH on the device, make sure it is supported by using:
+
+    Switch1#show version
+
+Supporting images will have a "K9" in their name.
+
+Cisco exports NPE (no payload Encryption) IOS images to countries that have
+restrictions on encryption technologies. These no dot support SSH cryptographic keys.
+
+To enable and use SSH we must generate RSA public and private keys pair.
+The Keys are used for data encryption/decryption, authentication,etc..
+
+Let's see the steps to configure it:
+
+    Switch(config)#hostname HOSTNAME
+
+Needed to generate the keys, name your devices.
+
+    Switch(config)#ip domain name DOMAINNAME
+
+This is necessary as the FQDN of the device is used to name the RSA Keys.
+FQDN = Fully Qualified Domain Name (host name + domain name)
+
+    Switch(config)#crypto key generate rsa
+
+and then specify the length, or do:
+
+    Switch(config)#crypto key generate rsa modulus 'length'
+
+This will skip the question on how long (1024-2048-4096 etc..)
+The length must be 768 bits or greater to use SSHv2
+Once generated a Syslog message will be displayed to signal ssh is enabled:
+
+    *Jun 09 10:54:35.708: %SSH-5-ENABLED: SSH 1.99 has been enabled
+
+To check just do:
+
+    Switch(config)#do show ip ssh
+
+  you will note the SSH Enables line.
+
+Now that it's enables, let's go over the configuration:
+
+    Switch(config)#enable secret PASSWORD
+
+    Switch(config)#username USERNAME secret password
+
+    Switch(config)#access-list 1 permit host PC2IP
+
+Just as before so we can restrict access.
+
+    Switch(config)#ip ssh version 2
+
+This last command is optional but recommended, we restrict to SSHv2.
+
+        Switch(config)#line vty 0 15
+
+        Switch(config-line)#login local
+
+        Switch(config-line)#exec-timeout 5 0
+
+        Switch(config-line)#transport input ssh
+
+        Switch(config)#access-list 1 in
