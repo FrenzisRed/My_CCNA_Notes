@@ -38,6 +38,34 @@ use to connect to the outside.
 
 Network Address translation is used to modify the source and/or destination IP
 address of packets.
+There are various reasons to use NAT, but the most common reason is to allow hosts
+with private IP addresses to communicate with other hosts over the internet.
 
+For the CCNA we have to understand <strong>source NAT</strong> and how to configure
+it on Cisco routers.
+
+
+    -------              ----------        ----------            --------
+    | PC1 |.167--------.1| Router1|.1----.2|internet|------------| SRV1 |
+    -------              ----------        ----------            --------
+
+PC1 = 192.168.0.167
+SRV1 = 8.8.8.8
+Router1 external int = 203.0.113.1
+
+Let's talk about source NAT with the network topology shown above:
+PC1's IP address is 192.168.0.167 and wants to communicate with server1 at 8.8.8.8
+So it creates a packet with source IP 192.168.0.167 and destination 8.8.8.8
+It sends the packet to its default getaway, Router1. This is where the NAT happens.
+Router1 translate the source IP address from 192.168.0.167 to 203.0.113.1, the IP
+of its external interface. That's why it's called 'source' NAT, because it translate
+the source IP address. This is just one type of NAT, more to follow, but let's
+finish this example first.
+Router1 then sends the packet out to the internet and it arrives at its destination,
+8.8.8.8. Now the server will send a reply.
+the source is 8.8.8.8 and the destination is 203.0.113.1. It sends the packet to
+the Router1, which then reverse the translation back to 192.168.0.167.
+
+Let's see now <strong>Static NAT</strong>
 
 <h4 align="center">Static NAT Configuration</h4>
