@@ -162,5 +162,20 @@ a wave effect of congestion and underutilized network that will cycle non stop.
 
 To visualize it:
 
-    network_________\ tail drop_______\ Global TCP Window_______\ network_________\ Global TCP window 
-    congestion      /                 / size decrease           / underutilized   / size increase
+    network_________\ tail drop_______\ Global TCP Window_______\ network_________\ Global TCP window____
+    congestion      /                 / size decrease           / underutilized   / size increase        \
+          |                                                                                               |
+          \______________________________________________________________________________________________/
+
+
+A solution to prevent tail drop and TCP global synchronization is <strong>Random Early Detection</strong>
+or RED.
+
+When the amount of traffic in the queue reaches a certain threshold, the 
+device will start randomly dropping TCP synchronization, in which ALL TCP flows
+reduce and the increase the rate of transmission at the same time in waves.
+
+In Standard RED, all kinds of traffic are treated the same.
+
+An improved version, <strong> Weighted Random Early Detection</strong> (WRED), allows
+to control which packets are dropped depending on the traffic class.
