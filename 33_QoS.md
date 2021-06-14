@@ -89,6 +89,51 @@ Here are the standards and it's worth noting that PoE was first ILP, Cisco Inlin
     ---------------------------------------------------------------------------
     | UPoE+ Type4|     802.3bt         |    100     |             4           |
     ---------------------------------------------------------------------------
-    
 
-<h4 align="center">Intro to QoS</h4>
+
+<h4 align="center">Introduction to QoS</h4>
+
+We talked about PoE and VoIP up to now as QoS often apply to these services as
+QoS makes sure to prioritize communication and having a clear audio over the internet.
+
+Voice traffic and data traffic used to use entirely separated networks.
+Voice traffic used PSTN and data traffic used the IP network (enterprise WAN, Internet, etc..)
+QoS wasn't necessary as the different kinds of traffic didn't compete for bandwidth.
+
+But modern networks are typically _converges networks_ in which IP phones, video traffic,
+regular data traffic, etc.. share the same IP network.
+This enables cost saving as well as more advanced features for voice and video traffic,
+for example integrations with collaboration software as Cisco WebEx, Microsoft Teams, etc..
+So now the different kinds of traffic have to compete for bandwidth.
+
+QoS is a set of tools used by networks devices to apply different treatement to
+different packets. VoIP and Video traffic are very sensible on delays.
+
+QoS is used to manage the following characteristics of network traffic:
+
+    1 Bandwidth - The overall capacity of the link, measured in bits per second
+    QoS tools allow us to reserve a certain amount of a link's bandwidth for
+    specific kinds of traffic. For example: 20% voice traffic, 30% for specific
+    kinds of data traffic, leaving 50% for all other traffic.
+
+    2 Delay - Two type of delays, One-way delay and two-way delay.
+    One-way delay is the amount of time it takes traffic to go from source to destination.
+    Two-way delay is the amount of time traffic takes to go from source to destination and return.
+
+    3 Jitter - The variation in one-way delay between packets sent by the same application.
+    IP phones have a 'jitter buffer' to provide a fixed delay to audio packets.
+
+    4 Loss - The % of packets sent that do not reach their destination. Can be caused
+    by faulty cables or when a device's packet _queues_ get full and the device starts
+    discarding packets.
+
+The following standards ar recommended for acceptable interactive audio quality:
+
+<strong>One-way delay:</strong> 150ms or less
+<strong>Jitter:</strong> 30ms or less
+<strong>Loss:</strong> 1% or less
+
+If these standards are not met, there could be a noticeable reduction in the quality
+of the phone call.
+
+<h4 align="center">QoS - Queuing</h4>
