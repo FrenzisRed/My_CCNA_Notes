@@ -139,3 +139,28 @@ If these standards are not met, there could be a noticeable reduction in the qua
 of the phone call.
 
 <h4 align="center">QoS - Queuing</h4>
+
+If a network device receives messages faster than it can forward them out of the
+appropriate interface, the messages are placed in a queue.
+By default, queued messages will be forwarded in a First In First Out (FiFo) manner.
+if the queue is full new packets will be dropped, this is called _tail drop_.
+
+<strong>Tail drop</strong> is harmful because it can lead to <strong>TCP global synchronization</strong>.
+
+Review of the <strong>TCP sliding window</strong>:
+
+    Hosts using TCP use the 'sliding window' increase/decrease the rate at which they
+    send traffic as needed. When a packet is dropped it will be re-transmitted.
+    When a drop occurs, the sender will reduce the rate it sends traffic.
+    It will then gradually increase the rate again.
+
+When the queue fills up and <strong>tail drop</strong> occurs, all TCP hosts sending
+traffic will slow down the rate at which they send traffic.
+They will all then increase the rate at which they send traffic, which rapidly leads
+to more congestion, dropped packets, and the process repeats again. This will cause
+a wave effect of congestion and underutilized network that will cycle non stop.
+
+To visualize it:
+
+    network_________\ tail drop_______\ Global TCP Window_______\ network_________\ Global TCP window 
+    congestion      /                 / size decrease           / underutilized   / size increase
