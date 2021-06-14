@@ -196,5 +196,49 @@ them manually with this command:
     clear ip nat translation
 
 
+<h4 align="center">Dynamic NAT Configuration</h4>
+
+As in static NAT we must define inside and outside interface:
+
+    Router1(config)#int g 0/1
+    Router1(config-if)#ip nat inside
+
+    Router1(config)#int g 0/0
+    Router1(config-if)#ip nat outside
+
+Then we define the traffic that should be translated:
+
+    Router1(config)#access-list 1 permit 192.0.0 0.0.0.255
+
+Then we define the pool of _inside global_ IP addresses:
+
+    Router1(config)#ip nat pool POOL1 100.0.0.0 100.0.0.255 prefix-length 24
+    # instead of prefix-lenth 24 we could use a netmask of 255.255.255.0
+
+This netmask or prefix-length is used by Cisco IOS to check if the first address
+and last address are in the provided subnet. If they are not, the command will be rejected.
+
+Then we need to configure the dynamic NAT by mapping the ACL to the pool:
+
+    Router1(config)#ip nat inside source list 1 pool POOL1
+
 
 <h4 align="center">Dynamic PAT</h4>
+
+PAT = Port Address Translation AKA NAT Overload.
+
+<strong>PAT</strong> translate both IP address and the port number (if necessary)
+By using a unique port number for each communication flow, a single public IP address
+can be used by many different internal hosts. (port number are 16 bits = over 65.000 available port numbers).
+
+The Router will keep track of which _inside local_ address is using which _inside global_
+address and port.
+
+Because many inside hosts can share a single public IP, PAT is very useful for
+preserving public IP addresses, and it is used in networks all over the world.
+
+<h4 align="center">PAT Configuration</h4>
+
+it's basically as the dynamic NAT, we just add one keyword.
+
+    Router1(config)#ip nat inside source list 1 pool POOL1 <strong>overload</strong>
