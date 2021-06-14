@@ -241,4 +241,16 @@ preserving public IP addresses, and it is used in networks all over the world.
 
 it's basically as the dynamic NAT, we just add one keyword.
 
-    Router1(config)#ip nat inside source list 1 pool POOL1 <strong>overload</strong>
+    Router1(config)#ip nat inside source list 1 pool POOL1 OVERLOAD
+
+With PAT there are no one-to-one mapping, so if we do show ip nat translations we
+will see not see them. We will see only the many-to-one translations.
+
+The most common technique to configure PAT is to use the public IP address from
+the Router when translating the source IP of packets.
+
+The difference is in this command:
+
+    Router1(config)#ip nat inside source list 1 interface g0/0 overload
+
+Where we specify the outside router interface instead of a pool.
