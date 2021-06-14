@@ -101,6 +101,12 @@ its _inside Global address_ mapped on Router1.
 over the internet. However, because it requires a one-to-one IP address mapping,
 it doesn't help preserve IP addresses.
 
+This one-to-one mapping does not only allow internal hosts to reach outside hosts,
+but also allows external hosts to access the internal host via the inside global address.
+
+Server 8.8.8.8 could initiate a connection to 100.0.0.1 and the router will translate
+it to 192.168.0.167 and forward it to PC1.
+
 <h4 align="center">Static NAT Configuration</h4>
 
 Let's have a look on how to configure static NAT. First define the _inside_ interface/s:
@@ -156,3 +162,39 @@ Then:
 
 This commands will show you several details on total active translations, peak translations,
 inside and outside interfaces.
+
+
+<h4 align="center">Dynamic NAT</h4>
+
+In <strong>Dynamic NAT</strong>, the router dynamically maps _inside local_ addresses to
+_inside global_ addresses as needed.
+
+An ACL is used to identify which traffic should be translated. This is a totally
+different use of an ACL, but it's a very common use. ACLs can be used to indicate
+which traffic should be forwarded and which should be blocked. But they can be used
+just to identify traffic. If the source IP is <strong>permitted</strong> by the ACL,
+the source IP will be translated. If is <strong>denied</strong> the source IP will
+NOT be translated, but the traffic will not be dropped! We will see this in the
+configuration part.
+
+A NAT pool is used to define the available _inside global_ addresses.
+
+the process for PC1 and Server still the same as before, the only difference is
+that we did not manually configured a mapping for PC1, router1 did it dynamically
+taking a public IP address from the available pool.
+
+Although they are dynamically assigned, they still function as one-to-one.
+If there are no addresses available at the moment in the pool, like they are all
+currently used, it's called <strong> NAT pool exhaustion</strong>. In this case
+if a request for NAT arrives and no IP addresses are available, the router will
+drop the packet. The host will not be able to access the external network until
+an address becomes available.
+
+Dynamic NAT entries will time out automatically if not used, or we can clear
+them manually with this command:
+
+    clear ip nat translation
+
+
+
+<h4 align="center">Dynamic PAT</h4>
