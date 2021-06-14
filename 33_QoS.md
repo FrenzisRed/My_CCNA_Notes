@@ -130,7 +130,9 @@ QoS is used to manage the following characteristics of network traffic:
 The following standards ar recommended for acceptable interactive audio quality:
 
 <strong>One-way delay:</strong> 150ms or less
+
 <strong>Jitter:</strong> 30ms or less
+
 <strong>Loss:</strong> 1% or less
 
 If these standards are not met, there could be a noticeable reduction in the quality
