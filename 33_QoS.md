@@ -218,8 +218,89 @@ The PCP field is right in the "Dot 1 Q tag", a closer look to the format:
     --------------------------------------
     |         |         TCI              |  
     |  TPID   |---------------------------
-    |         | PCP    | DEI  |   VID    |
+    |         |   PCP  | DEI  |   VID    |
     --------------------------------------
+
+The PCP is that little 3bits field. It is also known as the CoS (Class of Service).
+Its use is defined by the IEEE 802.1p
+
+3 bits = 8 possibles values, the values are:
+
+    PCP value          Traffic types
+        0           Best Effort (default)
+        1               Background
+        2            Excellent effort
+        3           Critical Application
+        4                 video
+        5                 voice
+        6           Internet protocol
+        7           Network control
+
+Let's have a look at some of these:
+
+<strong>Best effort</strong> delivery means there is no guarantee that data is delivered
+or that it meets any QoS standard. This is regular traffic, not high priority.
+
+IP phones mark call signals traffic (used to establish calls) as <strong>PCP3</strong>
+They mark the actual voice traffic as <strong>PCP5</strong>.
+
+We see the <strong>MARK</strong> word as it's the technical word used in QoS. It's
+how the value is set in the PCP or DsCP field. Then network devices looks at these
+markings and uses it to classify the traffic as high priority, low priority, etc..
+
+Because the PCP is found in the dot1q header, it can only be used over the following
+connections:
+
+    Trunk links
+
+    access links with a voice VLAN
+
+This is why it's very limited, limitation that the Layer 3 classification doesn't have.
+
+So let's talk about Layer 3 classification.
+In the IPv4 header we have the ToS (Type of Service) field (1 byte). IPv6 also
+has a byte called the traffic class byte used for QoS, but let's see IPv4 header.
+ToS contains two entities, DSCP (6 bits) and ECN (2 bits).
+(Differentiated Services Code Point & Explicit Congestion Notification).
+
+The 6 bits of DSCP allows a total of 64 values, which gives a lot of flexibility
+regarding how we can mark and classify traffic.
+
+Let's have a look to the standard markings:
+
+    Default forwarding (DF)
+      - Best Effort traffic, The DSCP marking for DF is 0.
+
+    Expedited Fowarding (EF)
+      - Used for Low loss/latency/jitter traffic (usually voice)
+      - The DSCP marking for DF is 46
+
+    Assure Forwarding (AF)
+      - A set of 12 standard values
+      - AF defines four traffic classes, all packets in a class have the same priority.
+      - Within each class, there are three levels of _drop precedence_. Higher the
+      drop precedence, highr the chance the packet will be dropped in a congestion.
+      - AF first bit is always 0, the 2 next are the Drop Precedence and the last
+      three are the class.
+      - When we wright an AF value, we wright it as an AFXY, where X is the class
+      and Y is the drop precedence.  
+      - For example:
+
+          001010 = AF11 equal to DSCP 10 if we do not subdivide the class and precedence.
+
+          001100 = AF12 equal to DSCP 12
+
+          010110 = AF23 equal to DSCP 22
+
+To calculate DSCP value without using binary, the formula is:
+
+    8X +2Y
+
+
+
+    Class Selector (CS) - A set of 8 standard values, provides backwards compatibility
+    with DSC predecessor IPP.
+
 
 
 
