@@ -2,7 +2,7 @@
 
 The principles of the <strong>CIA Triad</strong> from the foundation of security:
 
--<strong>C</strong>onfidentiality
+-<strong><h3>C</h3></strong>onfidentiality
 
   Only authorized users should be able to access data.
   Some information/data is public and can be accessed by anyone, some is secret
