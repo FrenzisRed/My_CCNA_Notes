@@ -296,17 +296,103 @@ To calculate DSCP value without using binary, the formula is:
 
     8X +2Y
 
+Class Selector (CS) - A set of 8 standard values, provides backwards compatibility
+with DSC predecessor IPP.
 
+The three bits that were added for DSCP are set to 0, and the original IPP bits
+are used to make 8 values.
 
-    Class Selector (CS) - A set of 8 standard values, provides backwards compatibility
-    with DSC predecessor IPP.
+    IPP:    0     1     2     3     4     5     6     7  
 
+    CS:    CS0   CS1   CS2   CS3   CS4   CS5   CS6   CS7
 
+    DSCP:   0     8     16   24    32    40    48    56
+
+    Just multiply * 8 to find the value.
+
+RFC 4954 was developed with the help of Cisco to bring all of these values together
+and standardize their use.
+
+The RFC offers many specific recommendations, but here are a few key ones:
+
+    Voice traffic: EF
+
+    Interactive Video: AF4x
+
+    Streaming Video: AF3x
+
+    High priority data: AF2x
+
+    Best effort: DF
+
+<h4 align="center">Trust boundary</h4>
+
+The _trust boundary_ of a network defines where devices trust/don't trust the QoS
+marking of received messages.
+If the markings are trusted, the device will forward the message without changing
+the markings.
+If the markings aren't trusted, the device will change the markings according to
+the configured policy.
+
+If a phone is connected to the switch port, it is recommended to move the trust
+boundary to the IP phones. This is done via configuration on the switch port connected
+to the IP phone, not directly on the phone itself.
+If a user marks their PC's traffic with a high priority from behind the phone, the
+marking will be changed as it's not trusted.
 
 
 <h4 align="center">Queuing/Congestion Management</h4>
 
+An essential part of QoS is the use of multiple queues.
+This is where classification pays a role. The device can match traffic based on
+various factors (for example the DSCP marking in the IP header) and then place it
+in the appropriate queue.
 
+However the device is only able to forward one frame out of an interface at once,
+so a _scheduler_ is used to decide which queue traffic is forwarded from next.
+_Prioritization_ allows the scheduler to give certain queues more priority than others.
+
+
+A common scheduling method is _weighted round-robin_.
+<strong>Round-robin</strong> means packets are taken from each queue in order, cyclically.
+<strong>Weighted</strong> means that more data is taken from high priority queues
+each time the scheduler reaches that queue.
+
+A popular method of scheduling is <strong>CBWFQ</strong> (Class-Based Weighted Fair Queuing), using
+a weighted round-robin scheduler while guaranteeing each queue a certain percentage
+of the interface's bandwidth during congestion.
+
+Round-robin scheduling is not ideal for voice/video traffic. Even if the voice/Video
+traffic receives a guaranteed minimum amount of bandwidth, round-robin can add delay
+and jitter because even the high priority queues have to wait their turn in the scheduler.
+
+To solve this particular issue we can configure <strong>LLQ</strong> (Low Latency Queuing)
+designating  one (or more) queues as _strict priority queues_. This mean that if
+there is traffic in the queue, the scheduler will ALWAYS take the next packet from
+that queue until it is empty.
+
+This is very effective for reducing the delay and jitter of voice/video traffic.
+
+However, it has the downside of potentially starving other queues if there is always
+traffic in the designated strict priority queue. Here is where _policing_ comes in use.
+
+Policing can take control of the amount of the traffic allowed in the strict priority
+queue so that it can't take all of the link's bandwidth.
 
 
 <h4 align="center">Shaping/Policing</h4>
+
+Traffic shaping and policing are both used to control the rate of traffic.
+
+Shaping buffers traffic in a queue if the traffic rate goes over the configured rate.
+
+Policing drops traffic if the traffic rate goes over the configured rate.
+
+-'Brust' traffic over the configured rate is allowed for a short period of time.
+- This accommodates data applications which typically are 'bursty' in nature. Instead
+of a constant stream of data, they send data in bursts.
+- The amount of burst traffic allowed is configurable.
+PS: Policing also has the option of re-marking the traffic instead of dropping it.
+
+in both cases, classification can be used to allow for different rates for different
+kinds of traffic.
