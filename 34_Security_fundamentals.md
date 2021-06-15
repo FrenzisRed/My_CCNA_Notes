@@ -2,7 +2,7 @@
 
 The principles of the <strong>CIA Triad</strong> from the foundation of security:
 
--<strong><h3>C</h3></strong>onfidentiality
+-<strong>C</strong>onfidentiality
 
   Only authorized users should be able to access data.
   Some information/data is public and can be accessed by anyone, some is secret
@@ -17,11 +17,54 @@ The principles of the <strong>CIA Triad</strong> from the foundation of security
 
   The network/systems should be operational and accessible to authorized users.
 
+
+Attackers can threaten the confidentiality, integrity and availability of an
+enterprise's system and information.
+
+
 <h4 align="center">Key security concepts</h4>
+
+Some important keywords to remember:
+
+<strong>Vulnerability</strong>: A potential weakness that can compromise the CIA
+of a system/info. A _potential_ weakness isn't a problem on its own. A window can
+be seen as a vulnerability for a house, but still, houses still have windows.
+
+<strong>Exploit</strong>: Something that can potentially be used to exploit the Vulnerability.
+Something that can _potentially_ be used as an exploit isn't a problem on its own.
+A rock could be seen as an exploit for the windows to enter a house... but they are not
+a problem on their own.
+
+<strong>Threat</strong>: A potential of a vulnerability to be exploited. To use previous
+example, a threat could be a rubber who wants to use a rock to enter the house.
+Or more commonly, a hacker exploiting a vulnerability in your system is a threat.
+
+<strong>Mitigation technique</strong>: is something that can protect against threats.
+They should be implemented everywhere a vulnerability can be exploited: clients devices,
+servers, switches, routers, firewalls, etc..
+Think of it as well on a physical manner, preventing unauthorized persons having
+access to servers/systems. Secure them in racks and locked rooms.
+
+Always remember: No system is perfectly secure!
 
 
 <h4 align="center">Common attacks</h4>
 
+DoS (Denial of Service) attacks
+
+Spoofing attacks
+
+Reflection/amplification attacks
+
+Man-in-the-middle attacks
+
+Reconnaissance attacks
+
+Malware
+
+Social engineering attacks
+
+Password-related attacks 
 
 <h4 align="center">Password/Multi-Factor Authentication (MFA)</h4>
 
