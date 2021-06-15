@@ -273,7 +273,7 @@ Let's have a look to the standard markings:
 
     Expedited Fowarding (EF)
       - Used for Low loss/latency/jitter traffic (usually voice)
-      - The DSCP marking for DF is 46
+      - The DSCP marking for EF is 46
 
     Assure Forwarding (AF)
       - A set of 12 standard values
