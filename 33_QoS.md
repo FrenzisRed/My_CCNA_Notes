@@ -171,7 +171,7 @@ To visualize it:
 A solution to prevent tail drop and TCP global synchronization is <strong>Random Early Detection</strong>
 or RED.
 
-When the amount of traffic in the queue reaches a certain threshold, the 
+When the amount of traffic in the queue reaches a certain threshold, the
 device will start randomly dropping TCP synchronization, in which ALL TCP flows
 reduce and the increase the rate of transmission at the same time in waves.
 
@@ -179,3 +179,53 @@ In Standard RED, all kinds of traffic are treated the same.
 
 An improved version, <strong> Weighted Random Early Detection</strong> (WRED), allows
 to control which packets are dropped depending on the traffic class.
+
+<h4 align="center">Classification/Marking</h4>
+
+As we understood QoS purpose is to give certain kind of network traffic priority over others
+during congestion.
+
+<strong>Classification</strong> organize network traffic (packets) into
+traffic classes (categories). This is fundamentals to QoS. To give priority to
+a certain type of traffic, we have to identify which types of traffic to give
+priority to. But how do we classify traffic? Here are some examples:
+
+    An ACL. Traffic, which is permitted by the ACL will be given certain treatment.
+    NBAR (Network Based Application Recognition) performs a _deep packet inspection_,
+    looking beyond the Layer 3 and Layer 4 information up to layer 7 to identify
+    the specific kind of traffic.
+
+    In the layer 2 and Layer 3 headers there are specific fields used for this purpose.
+
+    The PCP (Priority Code Point) field of the 802.1Q tag (in the Ethernet header)
+    can be used to identify high/low priority traffic. (naturally when a dot one Q tag is used)
+
+    The DSCP (Differentiated Services Code Point) field in the IP header can also
+    be used to identify high/low priority traffic.
+
+Let's have a look to the Ethernet Header again:
+
+    -----------------------------------------------------------------
+    |           |     |             |        |        |             |
+    | Preamble  | SFD | Destination | Source | 802.1Q | Type/Length |
+    |           |     |             |        |        |             |
+    -----------------------------------------------------------------
+
+The PCP field is right in the "Dot 1 Q tag", a closer look to the format:
+
+    --------------------------------------
+    | 16 bits | 3 bits | 1 bit | 12 bits |
+    --------------------------------------
+    |         |         TCI              |  
+    |  TPID   |---------------------------
+    |         | PCP    | DEI  |   VID    |
+    --------------------------------------
+
+
+
+<h4 align="center">Queuing/Congestion Management</h4>
+
+
+
+
+<h4 align="center">Shaping/Policing</h4>
