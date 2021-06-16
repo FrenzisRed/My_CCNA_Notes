@@ -2,18 +2,18 @@
 
 The principles of the <strong>CIA Triad</strong> from the foundation of security:
 
--<strong>C</strong>onfidentiality
+- <strong>C</strong>onfidentiality
 
   Only authorized users should be able to access data.
   Some information/data is public and can be accessed by anyone, some is secret
   and should only be accessed by specific people.
 
--<strong>I</strong>ntegrity
+- <strong>I</strong>ntegrity
 
   Data should not be tampered with by unauthorized users.
   Data should be correct and authentic.
 
--<strong>A</strong>vailability
+- <strong>A</strong>vailability
 
   The network/systems should be operational and accessible to authorized users.
 
@@ -45,26 +45,39 @@ servers, switches, routers, firewalls, etc..
 Think of it as well on a physical manner, preventing unauthorized persons having
 access to servers/systems. Secure them in racks and locked rooms.
 
-Always remember: No system is perfectly secure!
+<h4 align="center">Always remember: No system is perfectly secure!</h4>
 
 
 <h4 align="center">Common attacks</h4>
 
-DoS (Denial of Service) attacks
+1) DoS (Denial of Service) attacks
 
-Spoofing attacks
+2) Spoofing attacks
 
-Reflection/amplification attacks
+3) Reflection/amplification attacks
 
-Man-in-the-middle attacks
+4) Man-in-the-middle attacks
 
-Reconnaissance attacks
+5) Reconnaissance attacks
 
-Malware
+6) Malware
 
-Social engineering attacks
+7) Social engineering attacks
 
-Password-related attacks 
+8) Password-related attacks
+
+More in details:
+
+1) DoS attacks threaten the availability of a system one common DoS attack is the TCP SYN flood.
+  - TCP three-way handshake: SYN | SYN-ACK | ... no ACK
+  - The attacker sends countless TCP SYN messages to the target.
+  - The target sends SYN-ACK messages in response to each SYN it receives.
+  - The attacker never replies with the final ACK of the TCP three-way handshake.
+  - The incomplete connections fill up the target's TCP connection table.
+  - The attacker continues sending SYN messages.
+  - The target is no longer able to make legitimate TCP connections.
+  
+
 
 <h4 align="center">Password/Multi-Factor Authentication (MFA)</h4>
 
