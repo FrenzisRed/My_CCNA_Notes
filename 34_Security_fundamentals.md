@@ -155,11 +155,56 @@ about a target which can be used for a future attack.
   - Strong passwords should contain: at least 8 characters, preferably more, a mixture of Upper case and lowercase letters.
   A mixture of letters and numbers. One or more special characters (#@?! etc..). It should
   be changed regularly.
-  
+
 <h4 align="center">Password/Multi-Factor Authentication (MFA)</h4>
 
+<strong>Multi-factor authentication</strong> involves providing more than just a username/password
+to prove your identity. It usually involves providing two of the following ( two factor authentication):
+  - <strong>Something you know</strong>: a username/password combination, a PIN, etc..
+  - >strong>Something you have</strong>: Pressing a notification that appears on your phone,
+  a badge that is scanned, etc..
+  - <strong>Something you are</strong>: biometrics such as a face scan, palm scan, fingerprint scan
+  retina scan, etc..
+
+Requiring multiple factors of authentication greatly increases the security. Even
+if an attacker learns the target's password (<strong>Something you know</strong>), they won't
+be able to login to the target's account.
+
+<strong>Digital certificates</strong> are another form of authentication used to prove the identity
+of the holder of the certificate. They are used for websites to verify that the website being
+accessed is legitimate.
+- Entities that want a certificate to prove their identity send a CSR (Certificate Signing Request)
+to a CA (Certificate Authority), which will generate and sign the certificate.
 
 <h4 align="center">Authentication, Authorization, Accounting (AAA)</h4>
 
+AAA it's a framework for controlling and monitor users of a computer system.
+
+<strong>Authentication</strong> is the process of verifying a user's identity. Logging = authentication.
+<strong>Authorization</strong> is the process of granting the user appropriate access and permissions.
+Granting the user access to some files/services, restricting access to other files/services = authorization.
+<strong>Accounting</strong> is the process of recording the user's activity on the system.
+Logging when a user makes a change to a file = accounting.
+
+Enterprises typically use a AAA server to provide AAA service. ISE (Identity Service Engine) is
+Cisco's AAA server.
+
+AAA servers usually support the following two AAA protocols:
+  - RADIUS: an open standard protocol, uses UDP ports 1812 ans 1813.
+  - TACACS+: a Cisco propriety protocol, uses TCP port 49.
 
 <h4 align="center">Security Program Elements</h4>
+
+<strong>User awareness</strong> programs are designed to make employees aware of potential security threats
+and risks. IE. a company might send out false phishing emails to make employees click a
+link and sign in with their login credentials.
+Although the emails are harmless, employees who fall for the false emails will be informed
+that it is part of a user awareness program and they should be more careful about phishing.
+
+<strong>User training</strong> programs are more formal than user awareness programs.
+Dedicated training sessions which educate users on the corporate security policies, how to create
+strong passwords, and how to avoid potential threats.
+
+<strong>Physical access control</strong> protects equipment and data from potential
+attackers by only allowing authorized users into protected areas such as network closets or data center floors.
+Multifactor locks can protect access to restricted areas.
