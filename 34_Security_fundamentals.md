@@ -161,7 +161,7 @@ about a target which can be used for a future attack.
 <strong>Multi-factor authentication</strong> involves providing more than just a username/password
 to prove your identity. It usually involves providing two of the following ( two factor authentication):
   - <strong>Something you know</strong>: a username/password combination, a PIN, etc..
-  - >strong>Something you have</strong>: Pressing a notification that appears on your phone,
+  - <strong>Something you have</strong>: Pressing a notification that appears on your phone,
   a badge that is scanned, etc..
   - <strong>Something you are</strong>: biometrics such as a face scan, palm scan, fingerprint scan
   retina scan, etc..
