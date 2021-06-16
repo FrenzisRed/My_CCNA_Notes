@@ -76,8 +76,32 @@ More in details:
   - The incomplete connections fill up the target's TCP connection table.
   - The attacker continues sending SYN messages.
   - The target is no longer able to make legitimate TCP connections.
-  
 
+DDos (Distribute Denial-of-Service) attack is the same as DoS, but the attacker
+infected many target computers with malware and uses them all to initiate a DoS
+attack. The group of computers is called <strong>botnet</strong>.
+
+2)To <strong>Spoof</strong> an address is to use a fake source address (IP or Mac address).
+  - Numerous attacks involve spoofing, it's not a single kind of attack.
+  - An example is a <strong>DHCP exhaustion</strong> attack. Similar to the SYN attack.
+  - An attacker uses spoofed MAC addresses to flood DHCP Discovery messages.
+  - The target server's DHCP pool becomes fool resulting in a DoS to other devices.
+
+3) In a <strong>reflection</strong> attack, the attacker sends traffic to a _reflector_, and spoofs
+the source address of its packets using the target's IP address.
+  - The _reflector_ (ie. a DNS server) sends the reply to the target's IP address.
+  - If the amount of traffic sent to the target is large enough, this can result in a DoS.
+  - A reflection attack becomes an <strong>amplification</strong> attack when the amount of
+  traffic sent by the attacker is small, but it triggers a large amount of traffic to be sent from
+  the reflector to the target.
+ 4) in a man-in-the-middle attack, the attacker places himself between the source and destination
+ to eavesdrop on communications, or to modify traffic before it reaches the destination.
+  - A common example is <strong>ARP spoofing</strong>, also konwn as <strong>ARP poisoning</strong>.
+  - A host sends an ARP request, asking for the MAC address of another device.
+  - The target of the request sends an ARP reply, informing the requester of its MAC address.
+  - The attacker waits and sends another ARP reply after the legitimate replier.
+  - If the attacker's ARP reply arrives last, it will overwrite the legitimate ARP entry
+  in PC1's ARP table.
 
 <h4 align="center">Password/Multi-Factor Authentication (MFA)</h4>
 
