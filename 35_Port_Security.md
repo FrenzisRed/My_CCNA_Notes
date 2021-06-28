@@ -212,7 +212,7 @@ The Sticky secure MAC addresses will NEVER age out, even with static aging enabl
 However we need to save the running-config to the startup-config to make them truly
 permanent, or they will be lost in case of switch restart.
 
-When we issue the <h4>switchport  port-security mac-address sticky</h4> command, all
+When we issue the <strong>switchport  port-security mac-address sticky</strong> command, all
 currently dynamically-learned secure MAC addresses will be converted to sticky secure
 MAC addresses.
 
