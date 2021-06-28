@@ -7,7 +7,9 @@
 
 <h4 align="center">How does it work?</h4>
 
+
 <h4 align="center">What attacks does it prevent?</h4>
+
 
 
 <h4 align="center">DHCP Snooping configuration</h4>
