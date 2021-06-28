@@ -151,3 +151,74 @@ if an unauthorized frame enters an interface configured with port security.
     It does NOT generate Syslog/SNMP messages for unauthorized traffic.
     It does NOT increment the violation counter.
     It just silently discard unauthorized traffic.
+
+To set the type of violation mode we do it directly on the interface:
+
+    Switch1(config-if)#switchport port-security violation VIOLATIONMODE
+
+<h4 align="center">Secure MAC addresses aging</h4>
+
+MAC addresses dynamically learned or statically configured on a port-security enabled
+port are called secure MAC addresses.
+
+By default secure MAC addresses will not 'age out' (aging time : 0 mins seen above)
+We can configure a timer to clean the list:
+
+    switchport port-security aging time MINUTES
+
+If we do this, the aging type seen above will be _Absolute_. Let's have a look to the options:
+
+- Absolute
+
+    After the secure MAC address is learned, the aging timer starts and the MAC is removed
+    after the timer expires, even if the switch continues receiving frames from that
+    source MAC address. Even if it expire, it can be dynamically re-learned once it sends
+    a new frame.
+
+- Inactivity
+
+    After the secure MAC address is learned, the aging timer starts but is reset every time
+    a frame from that source MAC address is received on the interface.
+
+To set aging type we do:
+
+    switchport port-security aging type TYPE
+
+By default only the dynamically learned MAC addresses will get washed out by the aging timer.
+The static MAC address will not be deleted. But we can make them age too with the command:
+
+    switchport port-security aging static
+
+A very useful command for the switch overview is:
+
+    show port-security
+
+This will show us which interface have port security enabled, the max and current number
+of secure addresses on those interfaces, their security violation count and their
+security action.
+
+<h4 align="center">Sticky Secure MAC addresses</h4>
+
+_Sticky_ secure MAC address learning can be enabled with the following command:
+
+    Switch1(config-if)#switchport port-security mac-address sticky
+
+When enabled, dynamically-learned secure MAC addresses will be added to the running
+config like this:
+
+    switchport port-security mac-address sticky MAC-ADDRESS
+
+The Sticky secure MAC addresses will NEVER age out, even with static aging enabled.
+However we need to save the running-config to the startup-config to make them truly
+permanent, or they will be lost in case of switch restart.
+
+When we issue the <h4>switchport  port-security mac-address sticky</h4> command, all
+currently dynamically-learned secure MAC addresses will be converted to sticky secure
+MAC addresses.
+
+The opposite is true as well if we issue the <h4>no switchport  port-security mac-address sticky</h4>
+
+Secure MAC addresses will be added to the MAC address table like any other MAC address.
+Sticky and Static secure MAC addresses will have a type of STATIC.
+Dynamically-learned secure MAC addresses will have a type of DYNAMIC.
+We can view all secure MAC addresses with <h4>show mac address-table secure</h4>
