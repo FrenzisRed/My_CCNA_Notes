@@ -31,6 +31,20 @@ Messages sent by <strong>DHCP Clients:</strong>
 - RELEASE
 - DECLINE
 
+If a DHCP message is received on a <strong>trusted port</strong>, forward it as normal without inspection.
+
+If a DHCP message is received on an <strong>untrusted port</strong>, inspect it and act as follow:
+
+- If it is a <strong>DHCP Server</strong> message, discard it.
+- If it is a <strong>DHCP Client</strong> message, perform the following checks:
+
+    DISCOVER/REQUEST messages: Check if the frame's source MAC address and the DHCP message's
+    CHADDR fields match. Match = forward, mismatch = discard.
+
+    RELEASE/DECLINE messages: Check if the packet's source IP address and the receiving interface
+    match the entry in the _DHCP Snooping Binding Table_. Match = forward, mismatch = discard.
+
+A DHCP Snooping Binding Table is a list of successful leases of IP addresses from a server.
 
 <h4 align="center">What attacks does it prevent?</h4>
 
@@ -47,3 +61,19 @@ gateway. The attacker can then examine/modify the traffic before forwarding it t
 legitimate default getaway.
 
 <h4 align="center">DHCP Snooping configuration</h4>
+
+To enable DHCP Snooping we use the command:
+
+    Switch1(config)#ip dhcp snooping         # enables snooping globally
+
+    Switch1(config)#ip dhcp snooping vlan 1  # to enable it on vlan 1, change the value as needed
+
+    Switch1(config)#no ip dhcp snooping information option # Optional, will explain later
+
+    Switch1(config)#interface g0/0 # selecting the uplink interface
+
+    Switch1(config-if)#ip dhcp snooping trust # setting the interface as trusted.
+
+We can check the DHCP Snooping binding table with this command:
+
+Switch1#show ip dhcp snooping binding 
