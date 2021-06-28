@@ -216,9 +216,9 @@ When we issue the <h4>switchport  port-security mac-address sticky</h4> command,
 currently dynamically-learned secure MAC addresses will be converted to sticky secure
 MAC addresses.
 
-The opposite is true as well if we issue the #### no switchport  port-security mac-address sticky
+The opposite is true as well if we issue the <strong>no switchport  port-security mac-address sticky</strong>
 
 Secure MAC addresses will be added to the MAC address table like any other MAC address.
 Sticky and Static secure MAC addresses will have a type of STATIC.
 Dynamically-learned secure MAC addresses will have a type of DYNAMIC.
-We can view all secure MAC addresses with <h4>show mac address-table secure</h4>
+We can view all secure MAC addresses with <strong>show mac address-table secure</strong>
