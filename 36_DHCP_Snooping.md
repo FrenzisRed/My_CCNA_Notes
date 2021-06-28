@@ -38,11 +38,11 @@ If a DHCP message is received on an <strong>untrusted port</strong>, inspect it 
 - If it is a <strong>DHCP Server</strong> message, discard it.
 - If it is a <strong>DHCP Client</strong> message, perform the following checks:
 
-    DISCOVER/REQUEST messages: Check if the frame's source MAC address and the DHCP message's
-    CHADDR fields match. Match = forward, mismatch = discard.
+      DISCOVER/REQUEST messages: Check if the frame's source MAC address and the DHCP message's
+      CHADDR fields match. Match = forward, mismatch = discard.
 
-    RELEASE/DECLINE messages: Check if the packet's source IP address and the receiving interface
-    match the entry in the _DHCP Snooping Binding Table_. Match = forward, mismatch = discard.
+      RELEASE/DECLINE messages: Check if the packet's source IP address and the receiving interface
+      match the entry in the _DHCP Snooping Binding Table_. Match = forward, mismatch = discard.
 
 A DHCP Snooping Binding Table is a list of successful leases of IP addresses from a server.
 
@@ -76,4 +76,4 @@ To enable DHCP Snooping we use the command:
 
 We can check the DHCP Snooping binding table with this command:
 
-Switch1#show ip dhcp snooping binding 
+Switch1#show ip dhcp snooping binding
