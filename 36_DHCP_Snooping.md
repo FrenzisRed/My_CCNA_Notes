@@ -63,7 +63,11 @@ legitimate default getaway.
 DHCP snooping can limit the rate at which DHCP messages are allowed to enter an interface.
 If the rate of DHCP messages crosses the configured limit, the interface is err-disabled.
 Like with Port Security, the interface can be manually re-enabled, or automatically
-re-enabled with errdisable recovery.
+re-enabled with errdisable recovery. So what's the purpose? Rate-limiting can be very useful
+to protect against DHCP exhaustion attacks. Attackers can spoof the frame's source MAC
+address and the DHCP message's client hardware address field to bypass the DHCP spoofing
+filtering of DISCOVER and REQUEST messages. But with a rate limiting we can prevent them
+from exhausting the DHCP server with tons of illegitimate DHCP DISCOVER messages.
 
 <h4 align="center">DHCP Snooping configuration</h4>
 
@@ -75,15 +79,15 @@ In the network below, the uplink interfaces are marked as G0/0:
 
 To enable DHCP Snooping we use the following commands on Switch1 and 2:
 
-    Switch2(config)#ip dhcp snooping         # enables snooping globally
+    Switch2(config)#ip dhcp snooping           # enables snooping globally
 
-    Switch2(config)#ip dhcp snooping vlan 1  # to enable it on vlan 1, change the value as needed
+    Switch2(config)#ip dhcp snooping vlan 1    # to enable it on vlan 1, change the value as needed
 
     Switch2(config)#no ip dhcp snooping information option # Optional, will explain later
 
-    Switch2(config)#interface g0/0 # selecting the uplink interface
+    Switch2(config)#interface g0/0             # selecting the uplink interface
 
-    Switch2(config-if)#ip dhcp snooping trust # setting the interface as trusted.
+    Switch2(config-if)#ip dhcp snooping trust  # setting the interface as trusted.
 
 We can check the DHCP Snooping binding table with this command:
 
@@ -114,3 +118,21 @@ As for Port Security, we can manually re enable the interface with shutdown and 
 let's see how to configure the errdisable:
 
     Switch2(config)#errdisable recovery cause dhcp-rate-limit
+
+Let me quickly explain the above mentioned command that was optional:
+
+    no ip dhcp snooping information option
+
+information option = Option 82, also known as the _DHCP relay agent information option_
+is one of many DHCP options. \
+it provides additional information about which DHCP relay agent received the client's message,
+on which interface, in which VLAN, etc.. \
+DHCP relay agents can add Option 82 to messages they forward to the remote DHCP server. \
+With DHCP snooping enabled, by default Cisco switches will add Option 82 to DHCP messages
+they receive from clients, <u>even if the switch isn't acting as a DHCP relay agent</u>.
+
+This can cause problems, for example by default, Cisco switches will drop DHCP messages with
+Option 82 that are received on an untrusted port. \
+In our network above, if one PC sends a DISCOVERY message, it will go to Switch2 that
+will add Option 82 to it. Then forward it to Switch1. But as it comes to an untrusted port (downlink),
+it will be dropped.
