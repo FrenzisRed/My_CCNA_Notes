@@ -10,15 +10,20 @@ All ports are _untrusted_ by default. Typically, all ports connected to other ne
 devices (switches, routers) should be configured as <b>trusted</b>, while interfaces connected
 to end hosts should remain <b>untrusted</b>.
 
-let's use this network:
+let's use this network, I'll name the ports An:
 
     ----------                ----------          ---------            -------
-    | Router |G0/1--------G0/0| Switch1|.1----G0/0|Switch2|o-----------| PCs |
-    ----------                ----------          ------o--            -------
-                                                        |______________| PC2 |
-                                                                       -------
+    | Router |--------------A2| Switch1|A3------A4|Switch2|A5----------| PCs |
+    ----------                -----A7---          -----A6--            -------
+                                   |                    |______________| PC2 |
+                                   |                    |              -------              
+                                   |                    |______________| PC3 |
+                              ----------                               -------
+                              | Server |
+                              ----------
+In this scenario the typical setup should have A2,A3,A4 as trusted and A7,A5,A6 untrusted.
 
-
+The functioning is the same as DHCP Snooping.
 
 
 <h4 align="center">How does it work</h4>
@@ -28,6 +33,7 @@ let's use this network:
 
 <h4 align="center">What attacks does it prevent</h4>
 
+ARP poisoning attack,
 
 
 
