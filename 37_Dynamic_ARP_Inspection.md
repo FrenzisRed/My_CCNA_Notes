@@ -44,6 +44,7 @@ DHCP snooping and DAI both require work from the switch's CPU, so even id the at
 are blocked, they can still overload the switch CPU with messages. Rate-limiting is
 a useful mitigation technique.
 
+Let's put a bit more info in the optional checks.
 
 <h4 align="center">What attacks does it prevent</h4>
 
@@ -65,7 +66,7 @@ As from our network above I'll set the trusted ports:
 
     Switch2(config)#interface range A2-3
 
-    Switch2(config-if)#ip arp inspection trust
+    Switch2(config-if-range)#ip arp inspection trust
 
 Same configuration for Switch1:
 
@@ -78,3 +79,33 @@ Worth noting that DHCP snooping requires two commands to enable it, DAI only one
     Switch2(config)#ip dhcp snooping           
                                               VS    Switch2(config)#ip arp inspection vlan VLANNUMBER
     Switch2(config)#ip dhcp snooping vlan 1
+
+Once setup, we can check with our favorite show command:
+
+    Switch2#show ip arp inspection interfaces
+
+There we can see the list of interfaces, the trust state, the Rate (pps) and Burst Interval.
+
+Worth noting that DAI rate limiting is enabled on untrusted ports by default with a rate of 15
+packets per second. \
+It is disables on trusted ports by default. DHCP snooping rate limiting is disabled on all interfaces
+by default. \
+DHCP snooping rate limiting is configured like this: x packets <ins>per second</ins>. \
+The DAI <b>Burst interval</b> allows us to configure rate limiting like this: x packet <ins> per y seconds</ins>.
+
+Here is how to configure DAI rate limiting:
+
+    Switch2(config)#interface range A2-3
+
+    Switch2(config-if-range)#ip arp inspection limit rate 25 burst interval 2 # 25 packets on 2 seconds
+
+Burst interval is optional, if not specified it gives the value of 1 second.
+
+If ARP messagesare received faster than the specified rate, the interface will be
+err-disabled. It can be re-enabled in the two now well known ways:
+
+    Manually with a shutdown / no shutdown command
+
+or
+
+    errdisable recovery cause arp-inspection
