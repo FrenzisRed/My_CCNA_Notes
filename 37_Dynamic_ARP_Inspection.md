@@ -44,7 +44,19 @@ DHCP snooping and DAI both require work from the switch's CPU, so even id the at
 are blocked, they can still overload the switch CPU with messages. Rate-limiting is
 a useful mitigation technique.
 
-Let's put a bit more info in the optional checks.
+Let's put a bit more info in the optional checks. Additional checks can be issued with the inspection
+validate command:
+
+    Switch2(config)#ip arp inspection validate OPTIONS
+
+the options are:
+
+- dst-mac: Enables validation of the destination MAC address in the Ethernet header
+  against the target MAC address in the ARP body for ARP responses. The device classifies packets with different MAC addresses as invalid and drops them.
+- ip     : Validate IP address
+- src-mac: Validate source MAC address
+
+
 
 <h4 align="center">What attacks does it prevent</h4>
 
