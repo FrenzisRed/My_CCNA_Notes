@@ -1,6 +1,7 @@
 <h2 align="center">DHCP Snooping</h2>
 
 
+
 <h4 align="center">What is DHCP Snooping</h4>
 
 DHCP snooping is a security feature of switches that is used to filter DHCP messages
