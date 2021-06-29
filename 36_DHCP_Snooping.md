@@ -60,20 +60,57 @@ This will cause the client to send traffic to the attacker instead of the legiti
 gateway. The attacker can then examine/modify the traffic before forwarding it to the
 legitimate default getaway.
 
+DHCP snooping can limit the rate at which DHCP messages are allowed to enter an interface.
+If the rate of DHCP messages crosses the configured limit, the interface is err-disabled.
+Like with Port Security, the interface can be manually re-enabled, or automatically
+re-enabled with errdisable recovery.
+
 <h4 align="center">DHCP Snooping configuration</h4>
 
-To enable DHCP Snooping we use the command:
+In the network below, the uplink interfaces are marked as G0/0:
 
-    Switch1(config)#ip dhcp snooping         # enables snooping globally
+----------                ----------          ---------            -------
+| Router |G0/1--------G0/0| Switch1|.1----G0/0|Switch2|------------| PCs |
+----------                ----------          ---------            -------
 
-    Switch1(config)#ip dhcp snooping vlan 1  # to enable it on vlan 1, change the value as needed
+To enable DHCP Snooping we use the following commands on Switch1 and 2:
 
-    Switch1(config)#no ip dhcp snooping information option # Optional, will explain later
+    Switch2(config)#ip dhcp snooping         # enables snooping globally
 
-    Switch1(config)#interface g0/0 # selecting the uplink interface
+    Switch2(config)#ip dhcp snooping vlan 1  # to enable it on vlan 1, change the value as needed
 
-    Switch1(config-if)#ip dhcp snooping trust # setting the interface as trusted.
+    Switch2(config)#no ip dhcp snooping information option # Optional, will explain later
+
+    Switch2(config)#interface g0/0 # selecting the uplink interface
+
+    Switch2(config-if)#ip dhcp snooping trust # setting the interface as trusted.
 
 We can check the DHCP Snooping binding table with this command:
 
-Switch1#show ip dhcp snooping binding
+    Switch1#show ip dhcp snooping binding
+
+The result should look similar to this:
+
+MacAddress           IpAddress         Lease(sec)    Type           VLAN      Interface
+-----------------    ---------------   ---------     ---------      -----     -----------------
+0C:29:2F:18:79:00    192.168.100.10    86294         dhcp-snooping    1       GigabitEthernet0/3
+0C:29:2F:90:91:00    192.168.100.11    86392         dhcp-snooping    1       GigabitEthernet0/2
+0C:29:2F:27:E1:00    192.168.100.12    85224         dhcp-snooping    1       GigabitEthernet0/1
+Total number of bindings: 3
+
+This table logs all the information about the leased IPs and it's the table that
+is checked to make sure the IP address/interface ID match as described above for the
+RELEASE/DECLINE messages. This prevent attackers from sending messages in behalf of
+other clients on the network causing the DHCP server that they do not need their IP  
+anymore.
+
+Here is how to configure DHCP rate limiting:
+
+    Switch2(config)#interface range g0/1-3
+
+    Switch2(config-if)#ip dhcp snooping limit rate VALUEFORSECOND
+
+As for Port Security, we can manually re enable the interface with shutdown and no shutdown, but
+let's see how to configure the errdisable:
+
+    Switch2(config)#errdisable recovery cause dhcp-rate-limit 
