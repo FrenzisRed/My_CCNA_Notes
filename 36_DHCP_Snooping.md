@@ -69,9 +69,9 @@ re-enabled with errdisable recovery.
 
 In the network below, the uplink interfaces are marked as G0/0:
 
-----------                ----------          ---------            -------
-| Router |G0/1--------G0/0| Switch1|.1----G0/0|Switch2|------------| PCs |
-----------                ----------          ---------            -------
+    ----------                ----------          ---------            -------
+    | Router |G0/1--------G0/0| Switch1|.1----G0/0|Switch2|------------| PCs |
+    ----------                ----------          ---------            -------
 
 To enable DHCP Snooping we use the following commands on Switch1 and 2:
 
@@ -91,12 +91,12 @@ We can check the DHCP Snooping binding table with this command:
 
 The result should look similar to this:
 
-MacAddress           IpAddress         Lease(sec)    Type           VLAN      Interface
------------------    ---------------   ---------     ---------      -----     -----------------
-0C:29:2F:18:79:00    192.168.100.10    86294         dhcp-snooping    1       GigabitEthernet0/3
-0C:29:2F:90:91:00    192.168.100.11    86392         dhcp-snooping    1       GigabitEthernet0/2
-0C:29:2F:27:E1:00    192.168.100.12    85224         dhcp-snooping    1       GigabitEthernet0/1
-Total number of bindings: 3
+    MacAddress           IpAddress         Lease(sec)    Type           VLAN      Interface
+    -----------------    ---------------   ---------     ---------      -----     -----------------
+    0C:29:2F:18:79:00    192.168.100.10    86294         dhcp-snooping    1       GigabitEthernet0/3
+    0C:29:2F:90:91:00    192.168.100.11    86392         dhcp-snooping    1       GigabitEthernet0/2
+    0C:29:2F:27:E1:00    192.168.100.12    85224         dhcp-snooping    1       GigabitEthernet0/1
+    Total number of bindings: 3
 
 This table logs all the information about the leased IPs and it's the table that
 is checked to make sure the IP address/interface ID match as described above for the
@@ -113,4 +113,4 @@ Here is how to configure DHCP rate limiting:
 As for Port Security, we can manually re enable the interface with shutdown and no shutdown, but
 let's see how to configure the errdisable:
 
-    Switch2(config)#errdisable recovery cause dhcp-rate-limit 
+    Switch2(config)#errdisable recovery cause dhcp-rate-limit
