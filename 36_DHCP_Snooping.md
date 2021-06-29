@@ -129,7 +129,7 @@ it provides additional information about which DHCP relay agent received the cli
 on which interface, in which VLAN, etc.. \
 DHCP relay agents can add Option 82 to messages they forward to the remote DHCP server. \
 With DHCP snooping enabled, by default Cisco switches will add Option 82 to DHCP messages
-they receive from clients, <i>even if the switch isn't acting as a DHCP relay agent</i>.
+they receive from clients, <ins>even if the switch isn't acting as a DHCP relay agent</ins>.
 
 This can cause problems, for example by default, Cisco switches will drop DHCP messages with
 Option 82 that are received on an untrusted port. \
