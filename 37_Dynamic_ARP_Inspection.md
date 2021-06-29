@@ -28,12 +28,18 @@ The functioning is the same as DHCP Snooping.
 
 <h4 align="center">How does it work</h4>
 
-
+DAI inspect the <ins>sender MAC</ins> and <ins>sender IP</ins> fields of ARP messages
+received on <b>untrusted</b> ports and checks that there is a matching in the
+<ins>DHCP snooping binding table</ins>.
 
 
 <h4 align="center">What attacks does it prevent</h4>
 
-ARP poisoning attack,
+ARP poisoning attack is similar to DHCP poisoning. It involves an attacker manipulating
+target's ARP tables so traffic is sent to the attacker. \
+To do this, the attacker can send gratuitous ARP messages using another device's IP address.
+Other devices in the network will receive the GARP and update their ARP tables, causing
+them to send traffic to the attacker instead of the legitimate destination.
 
 
 
