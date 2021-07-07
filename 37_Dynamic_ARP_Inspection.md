@@ -51,12 +51,12 @@ validate command:
 
 the options are:
 
-- dst-mac: Enables validation of the destination MAC address in the Ethernet header
+- <b>dst-mac</b>: Enables validation of the destination MAC address in the Ethernet header
   against the target MAC address in the ARP body for ARP responses. The device classifies packets with different MAC addresses as invalid and drops them.
-- ip     : Validate IP address
-- src-mac: Validate source MAC address
+- <b>ip</b>     : Enables validation of the ARP body for invalid and unexpected IP addresses. Addresses include 0.0.0.0, 255.255.255.255, and all IP multicast addresses. The device checks the sender IP addresses in all ARP requests and responses and checks the target IP addresses only in ARP responses.
+- <b>src-mac</b>: Enables validation of source MAC address in the Ethernet header against the sender MAC address in the ARP body for ARP requests and responses. The devices classifies packets with different MAC addresses as invalid and drops them.
 
-
+These checks are an addition to the normal checks and if enabled a message has to pass all checks or it will be dropped.
 
 <h4 align="center">What attacks does it prevent</h4>
 
@@ -121,3 +121,38 @@ err-disabled. It can be re-enabled in the two now well known ways:
 or
 
     errdisable recovery cause arp-inspection
+
+To add the additional checks in the DAI here is the command:
+
+    Switch2(config)#ip arp inspection validate OPTION
+
+Be aware that if we enable one after the other one, the newly chosen option will overwrite the previous.
+If we want to enable all we should do the command like this:
+
+    Switch2(config)#ip arp inspection validate ip src-mac dst-mac
+
+or just select in one line the options you want to enable.
+
+<h4 align="center">Note on ARP ACLs</h4>
+
+From our network diagram let's say that the server do not use DHCP as it has a static IP.
+If it tries to send an ARP message it will be dropped as its IP address in not present in the DHCP binding table. \
+To fix this we need to configure a ARP ACL to permit server. Here is the commands:
+
+    Switch2(config)#arp access-list ARP-ACL-1
+
+    Switch2(config-arp-nacl)#permit ip host SERVERIP mac host MACADDRESS
+
+Now we have to apply it to make it effective:
+
+    Switch2(config)ip arp inspection filter ARP-ACL-1 vlan 1
+
+Now the ARP requests will be forwarded even if SERVER does not have an entry in the
+DHCP snooping table.
+
+One last useful command to check statuses:
+
+    Switch2#show ip arp inspection
+
+It gives a summery of the DAI configuration as well statistics about how many ARP messages
+have been forwarded or dropped.
