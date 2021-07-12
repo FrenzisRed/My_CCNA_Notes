@@ -50,6 +50,17 @@ _ADD image later_
       -------             -------
 <h4 align="center">2-Tier and 3-Tier LAN Architecture</h4>
 
+<h4>2-Tier LAN Architecture</h4>:
+
+The Two-tier LAN design consist of two hierarchical layers:
+- <b>Access Layer</b>: The layer that end hosts connect to (PCs, printers, cameras, etc..)
+Typically Access Layers Switches have lots of ports for end hosts to connect to. \
+QoS marking is typically done here. \
+Security services like port security, DAI, etc.. are typically performed here. \
+switchports might be PoE-enabled for wireless APs, IP phones, etc.. \
+
+- <b>Distribution Layer</b>
+Also called  a 'Collapsed Core' design because it omits a layer that is found in the Three Tier design: the <b>Core Layer</b>.
 <h4 align="center">Spine-Leaf Architecture (Data Center)</h4>
 
 <h4 align="center">SOHO (Small Office / Home Office)</h4>
