@@ -39,9 +39,11 @@ Example of Tier-2 LAN architecture:
 
 ![Tier-2](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/tier-2.png?raw=true "Tier-2")
 
-A1, A2, A3 and A4 form 2<b>access layers</b>, think of it of different buildings inside a campus. \
+A1, A2, A3 and A4 form 2 <b>access layers</b>, think of it of different buildings inside a campus.
 
-D1, D2, D3 and D4 are the <b>Distribution layer</b>, notice that D3 & D4 do not connect to the first <b>Access Layer</b> \
+D1, D2, D3 and D4 are the <b>Distribution layers</b>, notice that D3 & D4 do not connect to the first <b>Access Layer</b>
+
+In the picture we can see that the topology between the Distribution Layers is a <b>Full Mesh</b>, but the topology between the Distribution layer and its respective Access layer are <b>Partial Mesh</b>.
 
 <h4>3-Tier LAN Architecture:</h4>
 
