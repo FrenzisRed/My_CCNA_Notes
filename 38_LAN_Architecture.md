@@ -45,9 +45,9 @@ _ADD image later_
         |         /\       |
         |        /  \      |
         |       /    \     |
-     -------  /       \  -------
-     | SW1 |             | SW2 |
-     -------             -------
+      -------  /       \  -------
+      | SW1 |             | SW2 |
+      -------             -------
 <h4 align="center">2-Tier and 3-Tier LAN Architecture</h4>
 
 <h4 align="center">Spine-Leaf Architecture (Data Center)</h4>
