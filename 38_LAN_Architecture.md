@@ -35,6 +35,14 @@ Also called  a 'Collapsed Core' design because it omits a layer that is found in
 aggregates connections from the Access Layer Switches \
 typically is the border between Layer 2 and Layer 3
 
+Example of Tier-2 LAN architecture:
+
+![Tier-2](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/tier-2.png?raw=true "Tier-2")
+
+A1, A2, A3 and A4 form 2<b>access layers</b>, think of it of different buildings inside a campus. \
+
+D1, D2, D3 and D4 are the <b>Distribution layer</b>, notice that D3 & D4 do not connect to the first <b>Access Layer</b> \
+
 <h4>3-Tier LAN Architecture:</h4>
 
 The Three-tier LAN design consist of three hierarchical layers:
