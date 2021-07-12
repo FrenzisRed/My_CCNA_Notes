@@ -8,6 +8,7 @@ Let's go over some common terminology to prepare for the chapter, not only for L
 
 - <b>STAR</b> topology: When several devices all connect to one central device we can draw them in a 'star' shape like below, si this is often called a 'star topology'.
 
+![Star](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/Star.png?raw=true "Star")
                       -------
                       | PC1 |
                       -------
@@ -33,6 +34,7 @@ Let's go over some common terminology to prepare for the chapter, not only for L
 
 - <b>Partial Mesh mesh</b>: When some devices are connected to each other, but not all.
 
+![Partial Mesh](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/Partial.png?raw=true "partial mesh")
       -------             -------
       | SW1 |-------------| SW2 |
       -------             -------
