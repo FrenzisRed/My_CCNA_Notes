@@ -45,6 +45,10 @@ D1, D2, D3 and D4 are the <b>Distribution layers</b>, notice that D3 & D4 do not
 
 In the picture we can see that the topology between the Distribution Layers is a <b>Full Mesh</b>, but the topology between the Distribution layer and its respective Access layer are <b>Partial Mesh</b>.
 
+Now, if the network gets larger we might have many distributions layers connecting to different parts of the LAN as shown here:
+
+![LAN](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/Distribution_no_core.png?raw=true "Distribution no core")
+
 <h4>3-Tier LAN Architecture:</h4>
 
 The Three-tier LAN design consist of three hierarchical layers:
