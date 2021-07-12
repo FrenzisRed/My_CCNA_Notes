@@ -104,7 +104,21 @@ Here are some rules about Spine-Leaf architecture:
 - Leaf switches do not connect to other Leaf switches.
 - Spine switches do not connect to other Spine switches.
 - End hosts only connect to Leaf switches.
+The path taken by traffic is randomly chosen to balance the traffic load among the Spine switches. \
+Each server is separated by the same number of 'hops' (except those connected to the same leaf), providing consistent latency for East-West traffic.
+
 
 <h4 align="center">SOHO (Small Office / Home Office)</h4>
 
-<h4 align="center"></h4>
+SOHO refers to the office of a small company, or a small home office with few devices. It doesn't have to be an office, if our home has a network connected to the internet it is considered a SOHO network.
+
+SOHO networks don't have complex needs, so all networking functions are typically provided by a single device, often a 'home router' or 'wireless router'.
+
+This one device can server as a:
+- Router
+- Switch
+- Firewall
+- Wireless Access Point
+- Modem
+
+![SOHO](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/SOHO.png?raw=true "SOHO")
