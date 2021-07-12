@@ -49,6 +49,11 @@ Now, if the network gets larger we might have many distributions layers connecti
 
 ![LAN](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/Distribution_no_core.png?raw=true "Distribution no core")
 
+In large LAN networks with many Distribution Layers switches (for example in separated buildings), the number of connections required between Distribution Layers grows rapidly. \
+This makes it much more difficult and complicated to scale networks, to grow it and make it bigger. \
+
+So, to help scale large LAN networks we can add a Core layer.
+
 <h4>3-Tier LAN Architecture:</h4>
 
 The Three-tier LAN design consist of three hierarchical layers:
@@ -61,6 +66,9 @@ The Three-tier LAN design consist of three hierarchical layers:
  Connections are all Layer 3, no spanning-tree! \
  Should maintain connectivity throughout the LAN even if devices fail.
 
+This is the same network as before, but with a core layer in it:
+
+![Tier-3](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/Distribution_with_core.png?raw=true "Tier-3")
 
 <h4 align="center">Spine-Leaf Architecture (Data Center)</h4>
 
