@@ -8,24 +8,24 @@ Let's go over some common terminology to prepare for the chapter, not only for L
 
 - <b>STAR</b> topology: When several devices all connect to one central device we can draw them in a 'star' shape like below, si this is often called a 'star topology'.
 
-                    -------
-                    | PC1 |
-                    -------
-        -------        |        -------
-        | PC2 |  \\    |      / | PC3 |
-        -------   \\   |     /  -------
-                   \\  |    /
-    -------         --------        -------
-    | PC4 |---------| SW1  |--------| PC5 |
-    -------         --------        -------
-                  /     |   \
-        -------  /      |    \\ -------
-        | PC2 | /       |     \\| PC3 |
-        -------         |       -------
-                        |
-                    -------
-                    | PC1 |
-                    -------
+                      -------
+                      | PC1 |
+                      -------
+          -------        |        -------
+          | PC2 |  \     |      / | PC3 |
+          -------   \    |     /  -------
+                     \   |    /
+     -------         --------        -------
+     | PC4 |---------| SW1  |--------| PC5 |
+     -------         --------        -------
+                    /     |   \
+          -------  /      |    \  -------
+          | PC2 | /       |     \ | PC3 |
+          -------         |       -------
+                          |
+                      -------
+                      | PC1 |
+                      -------
 <h4 align="center">2-Tier and 3-Tier LAN Architecture</h4>
 
 <h4 align="center">Spine-Leaf Architecture (Data Center)</h4>
