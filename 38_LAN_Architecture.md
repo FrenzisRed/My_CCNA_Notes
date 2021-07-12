@@ -70,6 +70,13 @@ This is the same network as before, but with a core layer in it:
 
 ![Tier-3](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/Distribution_with_core.png?raw=true "Tier-3")
 
+BTW, Cisco recommend adding a Core Layer if there are more than three distribution layers in a single location.
+
+Each distribution layer connects to the core layer, no need for a full mesh of direct connections between the distribution layer switches.
+
+These core layer switches are a pair of very powerful and fast switches.
+
+
 <h4 align="center">Spine-Leaf Architecture (Data Center)</h4>
 
 <h4 align="center">SOHO (Small Office / Home Office)</h4>
