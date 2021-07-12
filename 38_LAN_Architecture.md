@@ -26,6 +26,29 @@ Let's go over some common terminology to prepare for the chapter, not only for L
                       -------
                       | PC1 |
                       -------
+
+- <b>Full mesh</b>: When each device is connected to each other device.
+
+_ADD image later_
+
+- <b>Partial Mesh mesh</b>: When some devices are connected to each other, but not all.
+
+    -------             -------
+    | SW1 |-------------| SW2 |
+    -------             -------
+       |    \          /  |
+       |     \        /   |
+       |      \      /    |
+       |       \    /     |
+       |        \  /      |
+       |         \/       |
+       |         /\       |
+       |        /  \      |
+       |       /    \     |
+       |      /      \    |
+    -------  /        \ -------
+    | SW1 |             | SW2 |
+    -------             -------
 <h4 align="center">2-Tier and 3-Tier LAN Architecture</h4>
 
 <h4 align="center">Spine-Leaf Architecture (Data Center)</h4>
