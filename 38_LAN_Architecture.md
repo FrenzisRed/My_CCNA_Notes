@@ -29,7 +29,7 @@ Let's go over some common terminology to prepare for the chapter, not only for L
 
 - <b>Full mesh</b>: When each device is connected to each other device.
 
-_ADD image later_
+![Full Mesh](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/Full_mesh.png?raw=true "full mesh")
 
 - <b>Partial Mesh mesh</b>: When some devices are connected to each other, but not all.
 
@@ -58,12 +58,12 @@ The layer that end hosts connect to (PCs, printers, cameras, etc..) \
 Typically Access Layers Switches have lots of ports for end hosts to connect to. \
 QoS marking is typically done here. \
 Security services like port security, DAI, etc.. are typically performed here. \
-switchports might be PoE-enabled for wireless APs, IP phones, etc.. \
+switchports might be PoE-enabled for wireless APs, IP phones, etc..
 
 - <b>Distribution Layer</b>: \
 Also called  a 'Collapsed Core' design because it omits a layer that is found in the Three Tier design: the <b>Core Layer</b>. \
 aggregates connections from the Access Layer Switches \
-typically is the border between Layer 2 and Layer 3 \
+typically is the border between Layer 2 and Layer 3
 
 <h4>3-Tier LAN Architecture:</h4>
 
@@ -75,8 +75,8 @@ The Three-tier LAN design consist of three hierarchical layers:
  The focus is speed ('fast transport') \
  CPU-intensive such as security, QoS marking/classification, etc.. should be avoided at this layer. \
  Connections are all Layer 3, no spanning-tree! \
- Should maintain connectivity throughout the LAN even if devices fail. \
- 
+ Should maintain connectivity throughout the LAN even if devices fail.
+
 
 <h4 align="center">Spine-Leaf Architecture (Data Center)</h4>
 
