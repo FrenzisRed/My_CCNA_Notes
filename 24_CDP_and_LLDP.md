@@ -8,6 +8,7 @@ CDP is a Cisco proprietary protocol and should be used only if all devices are C
 LLDP is an industry standard protocol (IEEE 802.1AB). \
 Because they share information about the devices in the network, they can be considered a security risk and are often not used. It is up to the network engineer/admin to decide if they want to use them in the network or not.
 
+
 <h4 align="center">Cisco Discovery Protocol (CDP)</h4>
 
 It is enables by default on Cisco's devices (routers, switches, firewalls, IP phones, etc..). \
