@@ -119,3 +119,22 @@ Here are show commands similar to the CDP we saw above:
     Router1#show lldp interface
 
     Router1#show lldp neighbors
+
+In the neighbor table there are couple of differences:
+
+- the hold-time will show us the time configured and not the actual countdown.
+- There is no Switch capabilities, LLDP uses B for bridge.
+- There is no platform column.
+
+And as before, for full details:
+
+    Router1#show lldp neighbor detail
+
+Or single interface details:
+
+    Router1#show lldp entry DEVICENAME
+
+
+Here is a wireshark capture, have a look on Destination field and the Cisco Discovery Protocol information:
+
+![Wireshark](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/wireshark_CDP.png?raw=true "CDP packet")
