@@ -50,4 +50,29 @@ It will gives us detailed information about all the neighbors. If we want full d
     Router1#show cdp entry DEVICENAME
 
 
+<h4 align="center">CDP Configuration</h4>
+
+As stated above CDP is enabled globally by default on each interface.
+
+To enable/disable CDP globally:
+
+    Router1(config)#[no] cdp run
+
+To enable/disable CDP on an interface we use:
+
+    Router1(config-if)#[no] cdp enabled
+
+To set the timer different from the default value, use:
+
+    Router1(config)# cdp timer SECONDS
+
+We can configure the holdtime in the same way:
+
+    Router1(config)# cdp holdtime SECONDS
+
+And we can enable CDP version 2, which is the default state, with:
+
+    Router1(config)# [no] cdp advertise-v2
+
+
 <h4 align="center">Link Layer Discovery Protocol (LLDP)</h4>
