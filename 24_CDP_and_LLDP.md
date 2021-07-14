@@ -21,5 +21,24 @@ On a router we can use this command to see global CDP information:
 
     Router1#show cdp
 
+Use this one to check information on traffic:
+
+    Router1#show cdp traffic
+
+And this one to see the interfaces information:
+
+    Router1#show cdp interface
+
+To check the CDP neighbor table we use:
+
+    Router1#show cdp neighbor
+
+Here we can learn a lot, let's check the columns we have:
+- Device ID: we can see the neighbors the device has received messages from.
+- Local Intrfce: We can see the interface used
+- Holdtme: This will be reset to 180 every time it receive a CDP message. If it gets to 0 the neighbor will be removed.
+- Capability: This helps identify what kind of device you are connected to.
+- Platform: This display the model of the neighboring device.
+- PortID: This tells you the port ID on the neighboring device.
 
 <h4 align="center">Link Layer Discovery Protocol (LLDP)</h4>
