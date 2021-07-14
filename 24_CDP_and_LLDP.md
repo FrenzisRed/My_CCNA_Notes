@@ -138,3 +138,7 @@ Or single interface details:
 Here is a wireshark capture, have a look on Destination field and the Cisco Discovery Protocol information:
 
 ![Wireshark](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/wireshark_CDP.png?raw=true "CDP packet")
+
+And here one from LLDP:
+
+![Wireshark](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/wireshark_LLDP.png?raw=true "wireshark_LLDP")
