@@ -41,4 +41,13 @@ Here we can learn a lot, let's check the columns we have:
 - Platform: This display the model of the neighboring device.
 - PortID: This tells you the port ID on the neighboring device.
 
+To learn more about CDP we can use the following command that gives us a lot of information:
+
+    Router1#show cdp neighbor detail
+
+It will gives us detailed information about all the neighbors. If we want full details on a specific neighbor we can use:
+
+    Router1#show cdp entry DEVICENAME
+
+
 <h4 align="center">Link Layer Discovery Protocol (LLDP)</h4>
