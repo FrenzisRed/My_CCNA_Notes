@@ -8,6 +8,9 @@ Here we will focus on ACLs from a security perspective, later you will see other
 ACLs function as a packet filter, instructing the router to permit or discard specific traffic. \
 ACLs can filter traffic based on source/destination IP addresses, source/destination Layer 4 ports, etc..
 
+
+<h4 align="center">ACLs logic</h4>
+
 Let's use this network for our examples:
 
 ![ACLs](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/ACLs1.png?raw=true "ACLs")
@@ -37,11 +40,19 @@ Note that a maximum of one ACL can be applied to a single interface _per directi
 If we apply a second ACL in the same direction of the previous one, it will replace it.
 
 <b>Implicit deny:</b>
-What happens if a packet doesn't match any of the entries in an ACL? Well, there is an invisible rule at the end of a ACL ACE. The invisible rule, or implicit rules tell the router to deny the packet. It's like if at the end of the list there was a: if source IP = any, then deny.
+What happens if a packet doesn't match any of the entries in an ACL? Well, there is an invisible rule at the end of a ACL ACE. The invisible rule, or implicit rules tell the router to deny the packet. It's like if at the end of the list there was a: <b>if source IP = any, then deny.</b>
+So understand that there is an implicit deny at the end of ALL ACLs. The implicit deny tell the router to deny all traffic that doesn't match any of the configured entries in the ACL. Be aware of it not to deny traffic that was supposed to be permitted.
 
-<h4 align="center">ACLs logic</h4>
 
 <h4 align="center">ACLs types</h4>
+
+Standard ACLs: Match based on <b>Source IP address</b> _only_.
+- Standard Numbered ACLs, identified with a number like 1, 2, etc..
+- Standard Named ACLs, identified with a name.
+
+Extended ACLs: Match based on <b>Source/Destination IP, Source/Destination port,</b> etc..
+- Extended Numbered ACLs
+- Extended Named ACLs 
 
 <h4 align="center">Standard numbered ACLs</h4>
 
