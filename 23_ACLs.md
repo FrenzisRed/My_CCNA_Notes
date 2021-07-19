@@ -52,8 +52,34 @@ Standard ACLs: Match based on <b>Source IP address</b> _only_.
 
 Extended ACLs: Match based on <b>Source/Destination IP, Source/Destination port,</b> etc..
 - Extended Numbered ACLs
-- Extended Named ACLs 
+- Extended Named ACLs
 
 <h4 align="center">Standard numbered ACLs</h4>
 
+Standard ACLs match traffic based only on the source IP address of the packet, the router does not check the destination IP, the source Layer 4 port, the destination port, etc.. \
+As explained above, numbered ACLs are identified with a number, for example ACL 1, ACL 2, etc.. \
+Different type of ACLs have a different range of numbers that can be used, Standard ACLs can use range between 1-99 and 1300-1999. \
+Originally, standard ACLs could use only 1 to 99, but later range 1300-1999 was added. \
+Here are the official ranges, other than the IP ranges not to be memorized for the CCNA, but it's good to have an idea:
+
+- Standard IP                           1-99 and 1300-1999
+- Extended IP                           100-199 and 2000-2699
+- Ethernet type code                    200-299
+- Ethernet address                      700-799
+- Transparent Bridging                  200-299                 # Protocol type
+- Transparent Bridging                  700-799                 # Vendor Code
+- Extended Transparent Bridging         1100-1199
+- DECnet and extended DECnet            300-399
+- Xerox Network Systems (XNS)           400-499
+- Extended XNS                          500-599
+- Apple Talk                            600-699
+- Source-route Bridging                 200-299                # Protocol type
+- Source-route Bridging                 700-799                # Vendor Code
+- Internetwork Packet Exchanger (IPX)   800-899
+- Extended IPX                          900-999
+- IPX Service Advertising Protocol (SAP)1000-1099
+
+The basic command to configure a standard numbered ACL is:
+
+    Router1(config)# access-list _number_ {<b>deny|permit</b>} _ip wildcard-mask_
 <h4 align="center">Standard named ACLs</h4>
