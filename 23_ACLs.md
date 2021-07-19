@@ -82,6 +82,24 @@ Here are the official ranges, other than the IP ranges not to be memorized for t
 
 The basic command to configure a standard numbered ACL is:
 
-    Router1(config)# access-list  NUMBER { DENY | PERMIT } IP WILDCARD-MASK 
+    Router1(config)# access-list  NUMBER { DENY | PERMIT } IP WILDCARD-MASK
+
+As an example:
+
+    Router1(config)# access-list 1 deny 1.1.1.1 0.0.0.0
+
+This will deny a single host. When you specify a /32 mask, you actually do not need to specify the wildcard-mask. To do the same we can use the _host_ keyword to do the same:
+
+    Router1(config)# access-list 1 deny host 1.1.1.1
+
+Ok, this command is denying access the host 1.1.1.1, but if we leave the ACL like this, all traffic will be denied due to the implicit deny, so we should add an extra rule like this as an example:
+
+    Router1(config)# access-list 1 permit any
+
+or
+
+    Router1(config)# access-list 1 permit 0.0.0.0 255.255.255.255
+
+This access list will deny host 1.1.1.1, but will permit all other. Naturally this is just an example.
 
 <h4 align="center">Standard named ACLs</h4>
