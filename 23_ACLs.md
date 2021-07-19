@@ -82,6 +82,6 @@ Here are the official ranges, other than the IP ranges not to be memorized for t
 
 The basic command to configure a standard numbered ACL is:
 
-<p>Router1(config)# access-list  _number_ { deny | permit } _ip wildcard-mask_ </p>
+    Router1(config)# access-list  NUMBER { DENY | PERMIT } IP WILDCARD-MASK 
 
 <h4 align="center">Standard named ACLs</h4>
