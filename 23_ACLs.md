@@ -59,7 +59,8 @@ Extended ACLs: Match based on <b>Source/Destination IP, Source/Destination port,
 Standard ACLs match traffic based only on the source IP address of the packet, the router does not check the destination IP, the source Layer 4 port, the destination port, etc.. \
 As explained above, numbered ACLs are identified with a number, for example ACL 1, ACL 2, etc.. \
 Different type of ACLs have a different range of numbers that can be used, Standard ACLs can use range between 1-99 and 1300-1999. \
-Originally, standard ACLs could use only 1 to 99, but later range 1300-1999 was added. \
+Originally, standard ACLs could use only 1 to 99, but later range 1300-1999 was added.
+
 Here are the official ranges, other than the IP ranges not to be memorized for the CCNA, but it's good to have an idea:
 
 - Standard IP&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;1-99 and 1300-1999
