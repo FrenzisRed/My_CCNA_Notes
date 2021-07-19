@@ -156,3 +156,9 @@ This is how we enter the config mode:
     Router1(config)# ip access-list standard ACL-NAME
 
 <b>Note that for named ACLs we use IP in front of the command.</b>
+
+Once in the config mode we can enter the ACEs :
+
+    Router1(config-std-nacl)# [ENTRY-NUMBER] { deny | permit } IP WILDCARD-MASK
+
+Note that in the named ACL command we can specify the _entry number_ of the rule we are configuring. If we do not specify it will automatically increase by a value of 10.
