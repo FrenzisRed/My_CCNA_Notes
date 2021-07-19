@@ -140,6 +140,7 @@ The configuration would be:
 
     Router1(config)#interface g0/2
 
-    Router1(config-if)#ip access-group 1 out 
+    Router1(config-if)#ip access-group 1 out
 
+This bring us to a rule on ACLs: <i>Standard ACLs should be applied as close to the destination as possible.</i>
 <h4 align="center">Standard named ACLs</h4>
