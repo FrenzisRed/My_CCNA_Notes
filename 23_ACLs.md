@@ -76,8 +76,8 @@ Here are the official ranges, other than the IP ranges not to be memorized for t
 - Source-route Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;200-299                # Protocol type
 - Source-route Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 700-799                # Vendor Code
 - Internetwork Packet Exchanger (IPX)&emsp;&emsp;800-899
-- Extended IPX &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;900-999
-- IPX Service Advertising Protocol (SAP)1000-1099
+- Extended IPX &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;900-999
+- IPX Service Advertising Protocol (SAP)&emsp;&emsp;1000-1099
 
 The basic command to configure a standard numbered ACL is:
 
