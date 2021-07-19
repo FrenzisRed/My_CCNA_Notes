@@ -108,5 +108,38 @@ ACLs are pretty flexible, one entry can be configured in many ways. There is as 
 
 This has no impact to the ACL, but helps reminding the purpose of the ACL or just to put a note about the configuration.
 
+We can have a look to the ACL with this command:
+
+    Router1(config)#do show access-lists
+
+Here we can see all entry in their order, but not the remark. This will show all kind of ACLs, but as for now we are focusing on IP access lists, so here is another command:
+
+    Router1(config)# do show IP access-lists
+
+And we can check in the running config for access-lists by doing a pipe on the running-config:
+
+    Router1(config)# do show running-config |include access-list
+
+This time we will have the remark present as well.
+
+Once all this is ready, we have to apply it to the interface of our choice, for this we select the interface and we run the following command:
+
+    Router1(config)# ip access-group NUMBER { in | out }
+
+So let's do an example with our network described above and here below are the requirements:
+- PC1 can access 192.168.2.0/24
+- Other PCs in 192.168.1.0/24 can't access 192.168.2.0/24
+
+The configuration would be:
+
+    Router1(config)#access-list 1 permit 192.168.1.1
+
+    Router1(config)#access-list 1 deny 192.168.1.0 0.0.0.255
+
+    Router1(config)#acess-list 1 permit any
+
+    Router1(config)#interface g0/2
+
+    Router1(config-if)#ip access-group 1 out 
 
 <h4 align="center">Standard named ACLs</h4>
