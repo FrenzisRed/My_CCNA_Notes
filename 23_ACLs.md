@@ -102,4 +102,11 @@ or
 
 This access list will deny host 1.1.1.1, but will permit all other. Naturally this is just an example.
 
+ACLs are pretty flexible, one entry can be configured in many ways. There is as well the possibility to enter remarks:
+
+    Router1(config)# access-list 1 remark ##TEXT FOR THE REMARK
+
+This has no impact to the ACL, but helps reminding the purpose of the ACL or just to put a note about the configuration.
+
+
 <h4 align="center">Standard named ACLs</h4>
