@@ -74,7 +74,7 @@ Here are the official ranges, other than the IP ranges not to be memorized for t
 - Extended XNS&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;500-599
 - Apple Talk&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;600-699
 - Source-route Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;200-299&emsp;&emsp;# Protocol type
-- Source-route Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;700-799&emsp;&emsp;# Vendor Code
+- Source-route Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;700-799&emsp;&emsp;# Vendor Code
 - Internetwork Packet Exchanger (IPX)&emsp;&emsp;&emsp;800-899
 - Extended IPX &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;900-999
 - IPX Service Advertising Protocol (SAP)&emsp;&emsp;1000-1099
