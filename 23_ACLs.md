@@ -62,10 +62,10 @@ Different type of ACLs have a different range of numbers that can be used, Stand
 Originally, standard ACLs could use only 1 to 99, but later range 1300-1999 was added. \
 Here are the official ranges, other than the IP ranges not to be memorized for the CCNA, but it's good to have an idea:
 
-- Standard IP&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;1-99 and 1300-1999
-- Extended IP&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;100-199 and 2000-2699
-- Ethernet type code&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;200-299
-- Ethernet address&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;700-799
+- Standard IP&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;1-99 and 1300-1999
+- Extended IP&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;100-199 and 2000-2699
+- Ethernet type code&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;200-299
+- Ethernet address&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;700-799
 - Transparent Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;200-299&emsp;&emsp;# Protocol type
 - Transparent Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;700-799&emsp;&emsp;# Vendor Code
 - Extended Transparent Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;1100-1199
