@@ -147,3 +147,12 @@ If we do not do this way, we might block more traffic than intended.
 
 
 <h4 align="center">Standard named ACLs</h4>
+
+Standard Named ACLs work just like Numbered ACLs, but instead of a number we can use names to identify ACLs. \
+Standard named ACLs are configured by entering 'standard named ACL config mode', and then configuring each entry within that config mode.
+
+This is how we enter the config mode:
+
+    Router1(config)# ip access-list standard ACL-NAME
+
+<b>Note that for named ACLs we use IP in front of the command.</b>
