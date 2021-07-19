@@ -62,7 +62,7 @@ Different type of ACLs have a different range of numbers that can be used, Stand
 Originally, standard ACLs could use only 1 to 99, but later range 1300-1999 was added. \
 Here are the official ranges, other than the IP ranges not to be memorized for the CCNA, but it's good to have an idea:
 
-- Standard IP&emsp;&emsp;&emsp;&emsp;&emsp;1-99 and 1300-1999
+- Standard IP&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;1-99 and 1300-1999
 - Extended IP                           100-199 and 2000-2699
 - Ethernet type code                    200-299
 - Ethernet address                      700-799
