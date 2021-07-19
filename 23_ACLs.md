@@ -142,5 +142,8 @@ The configuration would be:
 
     Router1(config-if)#ip access-group 1 out
 
-This bring us to a rule on ACLs: <ins>Standard ACLs should be applied as close to the destination as possible.</ins>
+This bring us to a rule on ACLs: <ins>Standard ACLs should be applied as close to the destination as possible.</ins> \
+If we do not do this way, we might block more traffic than intended.
+
+
 <h4 align="center">Standard named ACLs</h4>
