@@ -70,11 +70,11 @@ Here are the official ranges, other than the IP ranges not to be memorized for t
 - Transparent Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;700-799&emsp;&emsp;# Vendor Code
 - Extended Transparent Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;1100-1199
 - DECnet and extended DECnet&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;300-399
-- Xerox Network Systems (XNS)&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;400-499
-- Extended XNS&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;500-599
-- Apple Talk&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;600-699
-- Source-route Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;200-299&emsp;&emsp;# Protocol type
-- Source-route Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;700-799&emsp;&emsp;# Vendor Code
+- Xerox Network Systems (XNS)&emsp;&emsp;&emsp;&emsp;&emsp;400-499
+- Extended XNS&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 500-599
+- Apple Talk&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 600-699
+- Source-route Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 200-299&emsp;&emsp;# Protocol type
+- Source-route Bridging&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 700-799&emsp;&emsp;# Vendor Code
 - Internetwork Packet Exchanger (IPX)&emsp;&emsp;&emsp;800-899
 - Extended IPX &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;900-999
 - IPX Service Advertising Protocol (SAP)&emsp;&emsp;1000-1099
