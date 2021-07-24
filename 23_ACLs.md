@@ -213,8 +213,8 @@ If we now check out entry with _show ip access-lists_ we will have this output:
       20 permit 192.168.2.0, wildcard bits 0.0.0.255
       40 deny   192.168.1.0, wildcard bits 0.0.0.255
       50 permit any
-    Standard IP access list NAME1
 
+    Standard IP access list NAME1
       10 deny 192.168.1.0, wildcard bits 0.0.0.255
       20 permit any
 
@@ -222,3 +222,4 @@ As we can see the sequence number matches the entries I did, but the order is no
 - The router may re-order the /32 entries.
 - This improves the efficiency of processing the ACL.
 - it DOES NOT change the effect of the ACL.
+- This applies to standard names and standard numbered ACLs.
