@@ -1,7 +1,5 @@
 <h2 align="center">Access Control List. Standard & Extended</h2>
 
-<h3 align="center">Standard ACLs</h3>
-
 <h4 align="center">What are ACLs?</h4>
 
 ACLs (Access Control List) have multiple uses. \
@@ -225,5 +223,8 @@ As we can see the sequence number matches the entries I did, but the order is no
 - it DOES NOT change the effect of the ACL.
 - This applies to standard names and standard numbered ACLs.
 
+<h4 align="center">Another way to configure numbered ACLs</h4>
+
+<h4 align="center">Editing ACLs</h4>
 
 <h3 align="center">Extended ACLs</h3>
