@@ -162,3 +162,44 @@ Once in the config mode we can enter the ACEs :
     Router1(config-std-nacl)# [ENTRY-NUMBER] { deny | permit } IP WILDCARD-MASK
 
 Note that in the named ACL command we can specify the _entry number_ of the rule we are configuring. If we do not specify it will automatically increase by a value of 10.
+
+Let's now use our network do configure R2, here are the requirements:
+- PCs in 192.168.1.0/24 can't access 10.0.2.0/24
+- PC3 can't access 10.0.1.0/24
+- Other PCs in 192.168.2.0/24 can access 10.0.1.0/24
+- PC1 can access 10.0.1.0/24
+- Other PCs in 192.168.1.0/24 can't access 10.0.1.0/24
+
+So, we will configure one ACL to control access to 10.0.2.0/24 and apply it outbound on R2's G0/2. \
+Then we will configure an ACL to control access to 10.0.1.0/24 and apply it outbound on R2's G0/1
+
+Here is my config:
+
+    R2(config)#ip access-list standard NAME1
+
+    R2(config-std-nacl)#deny 192.168.1.0 0.0.0.255
+
+    R2(config-std-nacl)#permit any
+
+    R2(config-std-nacl)#interface G0/2
+
+    R2(config-if)#ip access-group NAME1 out
+
+and now for G0/1:
+
+    R2(config-if)#ip access-list standard NAME2
+
+    R2(config-std-nacl)#deny 192.168.2.1
+
+    R2(config-std-nacl)#permit 192.168.2.0 0.0.0.255
+
+    R2(config-std-nacl)#permit 192.168.1.1
+
+    R2(config-std-nacl)#deny 192.168.1.0 0.0.0.255
+
+    R2(config-std-nacl)#permit any
+
+    R2(config-std-nacl)#interface G0/1
+
+    R2(config-if)#ip access-group NAME2 out
+    
