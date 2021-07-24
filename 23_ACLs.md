@@ -202,4 +202,23 @@ and now for G0/1:
     R2(config-std-nacl)#interface G0/1
 
     R2(config-if)#ip access-group NAME2 out
-    
+
+ACLs configurations are flexible, this is just one of the ways to do it.
+
+If we now check out entry with _show ip access-lists_ we will have this output:
+
+    Standard IP access list NAME2
+      30 permit 192.168.1.1
+      10 deny   192.168.2.1
+      20 permit 192.168.2.0, wildcard bits 0.0.0.255
+      40 deny   192.168.1.0, wildcard bits 0.0.0.255
+      50 permit any
+    Standard IP access list NAME1
+
+      10 deny 192.168.1.0, wildcard bits 0.0.0.255
+      20 permit any
+
+As we can see the sequence number matches the entries I did, but the order is not as expected. This is something out of the CCNA scope and has to do with Cisco IOS way of working. Good to noting:
+- The router may re-order the /32 entries.
+- This improves the efficiency of processing the ACL.
+- it DOES NOT change the effect of the ACL.
