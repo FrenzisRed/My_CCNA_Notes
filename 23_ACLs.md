@@ -225,6 +225,14 @@ As we can see the sequence number matches the entries I did, but the order is no
 
 <h4 align="center">Another way to configure numbered ACLs</h4>
 
+We learned that numbered ACLs are configured in global config mode and that named ACLs are configured with subcommands in a separate config mode. \
+However, in modern IOS you can also configure numbered ACLs in the exact same way as named ACLs. This is just a different way of configuring numbered ACLs. However, in the running-config the ACL will display as if it was configured using the traditional method.
+
+The reason behind this is that there are few advantages on using the named ACL config mode, here are some:
+- We can easily delete individual entries in the ACL with <b>no</b> _entry-number_.
+
+
+
 <h4 align="center">Editing ACLs</h4>
 
 <h3 align="center">Extended ACLs</h3>
