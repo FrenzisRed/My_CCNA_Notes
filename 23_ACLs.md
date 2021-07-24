@@ -1,5 +1,6 @@
 <h2 align="center">Access Control List. Standard & Extended</h2>
 
+<h3 align="center">Standard ACLs</h3>
 
 <h4 align="center">What are ACLs?</h4>
 
@@ -223,3 +224,6 @@ As we can see the sequence number matches the entries I did, but the order is no
 - This improves the efficiency of processing the ACL.
 - it DOES NOT change the effect of the ACL.
 - This applies to standard names and standard numbered ACLs.
+
+
+<h3 align="center">Extended ACLs</h3>
