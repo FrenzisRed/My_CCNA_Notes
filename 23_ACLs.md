@@ -246,8 +246,29 @@ What's the reason to resequence an ACL? Well here is an example:
 
 ![Bad ACL](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/bad_acl.png?raw=true "Bad ACL")
 
-This ACL works, but will make it impossible to fit a new rule between existing ones. \
+This ACL works, but will make it impossible to insert a new rule between existing ones. \
 By resequencing with our command (shown in the picture) we will be able to give space to the ACEs and bee more flexible:
 
 ![Good ACL](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/good_acl.png?raw=true "Good ACL")
+
+Let's comment the resequence command:
+
+    R1(config)#ip access-list resequence 1 10 10
+
+- first we have the main command: <b>ip access-list resequence</b>
+- then we specify the acl number of <b>1</b>
+- then we tell the ACL to start from 10
+- and we tell the ACL to increment by 10 for each ACE.
+
+Now it's easier to add or insert new ACEs.
+
 <h3 align="center">Extended ACLs</h3>
+
+Extended ACLs function mostly the same as standard ACLs. \
+They can be numbered or named, just like standard ACLs, as seen before, Extended Numbered ACLs use the following ranges: 100-199, 2000-2699.
+They are processed from top to bottom as Standard ACLs. \
+However, they can match traffic based on more parameters, so they are more precise (and complex) than standard ACLs. For example we can do matching using <b> Layer 4 protocol/port, source address/destination address.</b>
+
+To configure an extended Numbered ACL we use the following command:
+
+    R1(config)# access-list NUMBER [ PERMIT | DENY ] PROTOCOL SRC-IP DEST-IP
