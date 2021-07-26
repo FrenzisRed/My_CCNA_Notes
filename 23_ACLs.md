@@ -272,3 +272,11 @@ However, they can match traffic based on more parameters, so they are more preci
 To configure an extended Numbered ACL we use the following command:
 
     R1(config)# access-list NUMBER [ PERMIT | DENY ] PROTOCOL SRC-IP DEST-IP
+
+And for an extended named ACL:
+
+    R1(config)# access-list extended [ NAME | NUMBER ]
+
+    R1(config-ext-nacl)#[SEQ-NUM] [ PERMIT | DENY ] PROTOCOL SRC-IP DEST-IP
+
+Just like Standard ACLs, Extended number ACLs can be configured in Named ACLs.
