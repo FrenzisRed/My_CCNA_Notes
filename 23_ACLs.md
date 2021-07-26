@@ -240,6 +240,14 @@ When configuring/editing numbered ACLs from global config mode, we can't delete 
 
 To resequence an ACL we sue this command:
 
-    ip access-list resequence _acl-id  starting-seq-num  increment_
+    ip access-list resequence ACL-ID  STARTING-SEQ-NUM  INCREMENT
 
+What's the reason to resequence an ACL? Well here is an example:
+
+![Bad ACL](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/bad_acl.png?raw=true "Bad ACL")
+
+This ACL works, but will make it impossible to fit a new rule between existing ones. \
+By resequencing with our command (shown in the picture) we will be able to give space to the ACEs and bee more flexible:
+
+![Good ACL](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/good_acl.png?raw=true "Good ACL")
 <h3 align="center">Extended ACLs</h3>
