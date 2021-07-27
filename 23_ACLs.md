@@ -290,3 +290,8 @@ Note the long list and note the first one, we can actually select the protocol b
 Now let's see how we can match the source/destination IP address, from the prevuous example I selected TCP and added the question mark:
 
 ![Source/Destination](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/src_dst.png?raw=true "Source/Destination")
+
+Note that in extended ACLs, to specify a /32 source or destination we have to use the <b>host</b> option or specify the wildcard mask. You can't just write the address without either of those like in standard ACLs.
+
+Under we have the type of destinations, as you can see it's very complete. I selected the first one, destination address and then I entered the wildcard bits.
+So the entered ACE of _deny tcp any 10.0.0.0 0.0.0.255_ will deny all packets that encapsulate a TCP segment, from any source, to destination 10.0.0.0/24.
