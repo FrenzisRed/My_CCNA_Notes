@@ -281,11 +281,15 @@ And for an extended named ACL:
 
 Just like Standard ACLs, Extended number ACLs can be configured in Named ACLs.
 
+<b><ins>Matching Protocols:</ins></b>
+
 Here are the protocols we can use in the ACE matching, I entered the config mode and then typed deny and question mark to bring up the options:
 
 ![protocols](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/protocols.png?raw=true "protocols")
 
 Note the long list and note the first one, we can actually select the protocol by the protocol number (if you remember them all :D). We can as well just do it by name, easier.
+
+<b><ins>Matching Source/Destination IP address:</ins></b>
 
 Now let's see how we can match the source/destination IP address, from the prevuous example I selected TCP and added the question mark:
 
@@ -295,3 +299,19 @@ Note that in extended ACLs, to specify a /32 source or destination we have to us
 
 Under we have the type of destinations, as you can see it's very complete. I selected the first one, destination address and then I entered the wildcard bits.
 So the entered ACE of _deny tcp any 10.0.0.0 0.0.0.255_ will deny all packets that encapsulate a TCP segment, from any source, to destination 10.0.0.0/24.
+
+Here are few examples:
+
+- Allow all traffic:
+
+    R1(config-ext-nacl)# permit ip any any
+
+- Prevent 10.0.0.0/16 from sending UDP traffic to 192.168.1.1/32
+
+    R1(config-ext-nacl)# deny udp 10.0.0.0 0.0.255.255 host 192.168.1.1
+
+-Prevent 172.16.1.1/32 from pinging hosts in 192.168.0.0/24
+
+    R1(config-ext-nacl)# deny icmp host 172.16.1.1 192.168.0.0 0.0.0.255
+
+<b><ins>Matching the TCP/UDP port numbers:</ins></b> 
