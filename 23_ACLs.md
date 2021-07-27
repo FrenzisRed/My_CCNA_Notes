@@ -280,3 +280,13 @@ And for an extended named ACL:
     R1(config-ext-nacl)#[SEQ-NUM] [ PERMIT | DENY ] PROTOCOL SRC-IP DEST-IP
 
 Just like Standard ACLs, Extended number ACLs can be configured in Named ACLs.
+
+Here are the protocols we can use in the ACE matching, I entered the config mode and then typed deny and question mark to bring up the options:
+
+![protocols](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/protocols.png?raw=true "protocols")
+
+Note the long list and note the first one, we can actually select the protocol by the protocol number (if you remember them all :D). We can as well just do it by name, easier.
+
+Now let's see how we can match the source/destination IP address, from the prevuous example I selected TCP and added the question mark:
+
+![Source/Destination](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/src_dst.png?raw=true "Source/Destination")
