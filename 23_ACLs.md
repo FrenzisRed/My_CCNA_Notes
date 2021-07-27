@@ -333,3 +333,95 @@ In this case we use <b>eq</b> as it means equal, but as seen in the picture abov
 As for Protocols, we can bring up a list inside the CLI where the first option is to manually specify the port number.
 
 ![ports](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/ports.png?raw=true "Ports")
+
+After the destination IP address and/or destination port numbers, there are many more options you can use to match (not necessary for the CCNA). \
+Some examples:
+
+- <b>ack</b>: match the TCP ACK flag
+- <b>fin</b>: match the TCP FIN flag
+- <b>syn</b>: match the TCP SYN flag
+- <b>ttl</b>: match packets with a specific TTL value
+- <b>dscp</b>: match packets with a specific DSCP value
+
+If you specify the protocol, source IP, source port, destination IP, destination port, etc, a packet MUST match ALL of those values to match the ACL entry. \
+Even if it matches all except one of the parameters, the packet won't match that entry of the ACL.
+
+As before, here are some examples:
+
+- Allow traffic from 10.0.0.0/16 to access the server at 2.2.2.2/32 using https
+
+    R1(config-ext-nacl)#permit tcp 10.0.0.0 0.0.255.255 host 2.2.2.2 eq 443
+
+- Prevent all hosts using UDP port numbers from 20000 to 30000 from accessing the server at 3.3.3.3/32
+
+    R1(config-ext-nacl)#deny udp any range 20000 30000 host 3.3.3.3
+
+- Allow hosts in 172.16.1.0/24 using a TCP source port greater than 9999 to access all TCP ports on server 4.4.4.4/32 except port 32
+
+    R1(config-ext-nacl)#permit tcp 172.16.1.0 0.0.0.255 gt 9999 host 4.4.4.4 neq 23
+
+Now let's have some examples using our network from the beginning of the chapter:
+
+Requirements:
+
+- Hosts in 192.168.1.0/24 can't use HTTPS to access SRV1
+- Hosts in 192.168.2.0/24 can't access 10.0.2.0/24
+- None of the hosts in 192.168.1.0/24 or 192.168.2.0/24 can ping 10.0.1.0/24 or 10.0.2.0/24
+
+Here how it's done, there is a little difference from the example on Standard ACLs:
+
+First requirement:
+
+    R1(config)#ip access-list extended HTTP_SRV1
+
+    R1(config-ext-nacl)#deny tcp 192.168.1.0 0.0.0.255 host 10.0.1.100 eq 443
+
+    R1(config-ext-nacl)#permit ip any any
+
+    R1(config-ext-nacl)#interface g0/1
+
+    R1(config-if)#ip access-group HTTP_SRV1 in
+
+As you noticed, we applied the ACL close to the source and not to the destination as explained before, the reason is that the rule for the Extended ACLs is inverted. \
+Extended ACLs should be applies <ins>as close as possible to the source</ins>, to limit how far the packets travel in the network before being denied. \
+Standard ACLs are less specific, so if they are applied close to the source there is a risk of blocking more traffic than intended.
+
+Second requirement:
+
+    R1(config)#ip access-list extended BLOCK_SRV2
+
+    R1(config-ext-nacl)#deny ip 192.168.2.0 0.0.0.255 10.0.2.0 0.0.0.255
+
+    R1(config-ext-nacl)#permit ip any any
+
+    R1(config-ext-nacl)#interface g0/2
+
+    R1(config-if)#ip access-group BLOCK_SRV2 in
+
+Third requirement:
+
+    R1(config)#ip access-list extended NO_PING
+
+    R1(config-ext-nacl)#deny ICMP 192.168.1.0 0.0.0.255 10.0.1.0 0.0.0.255
+
+    R1(config-ext-nacl)#deny ICMP 192.168.1.0 0.0.0.255 10.0.2.0 0.0.0.255
+
+    R1(config-ext-nacl)#deny ICMP 192.168.2.0 0.0.0.255 10.0.1.0 0.0.0.255
+
+    R1(config-ext-nacl)#deny ICMP 192.168.2.0 0.0.0.255 10.0.2.0 0.0.0.255
+
+    R1(config-ext-nacl)#permit ip any any
+
+    R1(config-ext-nacl)#interface g0/0
+
+    R1(config-if)#ip access-group NO_PING out
+
+It's worth noting that if this was a full scenario, we could omit the _deny ICMP 192.168.2.0 0.0.0.255 10.0.2.0 0.0.0.255_ as we already denied all access to the server from that IP on the second requirement.
+
+This in not the most effective solution, but it shows how the extended ACLs are configured.
+
+lastly, to check inbound and outbound ACLs we can run this command:
+
+    R1#show ip INTRERFACE
+
+This will summarize the information and we will be seen the applied access lists and their directions.
