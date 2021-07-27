@@ -328,4 +328,8 @@ In this case we use <b>eq</b> as it means equal, but as seen in the picture abov
 - gt 80         = greater than 80 ( 81 and greater)
 - lt 80         = less than 80 (79 and less)
 - neq 80        = NOT 80
-- range 80 100  = from port 80 to port 100 
+- range 80 100  = from port 80 to port 100
+
+As for Protocols, we can bring up a list inside the CLI where the first option is to manually specify the port number.
+
+![ports](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/ports.png?raw=true "Ports")
