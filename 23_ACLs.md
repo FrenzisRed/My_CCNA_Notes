@@ -310,8 +310,22 @@ Here are few examples:
 
     R1(config-ext-nacl)# deny udp 10.0.0.0 0.0.255.255 host 192.168.1.1
 
--Prevent 172.16.1.1/32 from pinging hosts in 192.168.0.0/24
+- Prevent 172.16.1.1/32 from pinging hosts in 192.168.0.0/24
 
     R1(config-ext-nacl)# deny icmp host 172.16.1.1 192.168.0.0 0.0.0.255
 
-<b><ins>Matching the TCP/UDP port numbers:</ins></b> 
+<b><ins>Matching the TCP/UDP port numbers:</ins></b>
+
+When we specify matching TCP/UDP, we can optionally specify the source or/and destination port number to match. If we don't all ports will match.
+
+For example, if we want to match port 80 we would do:
+
+    R1(config-ext-nacl)# deny | permit tcp SRC-IP eq SRC-PORT-NUM DEST-IP eq DST-PORT-NUM
+
+In this case we use <b>eq</b> as it means equal, but as seen in the picture above, we have many options. Here is a reminder:
+
+- eq 80         = equal to port 80
+- gt 80         = greater than 80 ( 81 and greater)
+- lt 80         = less than 80 (79 and less)
+- neq 80        = NOT 80
+- range 80 100  = from port 80 to port 100 
