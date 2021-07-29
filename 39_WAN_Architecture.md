@@ -25,7 +25,13 @@ Due to the higher cost; higher installation lead time and slower speeds of lease
 
 MPLS stands for 'Multi Protocol Label Switching'.
 Similar to the internet, service providers MPLS networks are shared infrastructure because many customer enterprises connect and share the same infrastructure to make WAN connections.
-However, the _label switching_ in the name of MPLS allows VPNs to be created over the MPLS infrastructure through the use of <b>labels</b>
+However, the _label switching_ in the name of MPLS allows VPNs to be created over the MPLS infrastructure through the use of <b>labels</b>.
+
+Some important terms:
+- CE router = Customer Edge router
+- PE router = Provider Edge router
+- P router  = Provider core router
+
 
 <h4 align="center">Internet connectivity</h4>
 
