@@ -143,7 +143,7 @@ To summarize, DMVPN provides the configuration simplicity of hub-and-spoke (each
 
 Be aware that some company may want all traffic to go through the hub router so a central firewall can control the traffic, but many do not want it as the mesh spoke-to-spoke is more efficient.
 
-<h3 align="center">Remote-access VPNs:</h3>
+<h4 align="center">Remote-access VPNs:</h4>
 
 Whereas site-to-site VPNs are used to make a point-to-point connection between two sites over the internet,remote-access VPNs are used to allow en devices (PCs, mobile phones) to access the company's internal resources securely over the internet.
 
@@ -157,7 +157,7 @@ Let's visualize it:
 
 ![Remote-Access](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/remote_access.png?raw=true "Remote-access")
 
-<h3 align="center">Site-to-Site vs Remote-access VPN:</h3>
+<h4 align="center">Site-to-Site vs Remote-access VPN:</h4>
 
 - <b>Site-to-Site</b> VPNs typically use IPsec  
 - <b>Remote-access</b> VPNs typically use TLS.
