@@ -42,6 +42,19 @@ These labels are the used to make forwarding decisions within the service provid
 The CE routers do not use MPLS, it is only used by the PE/P routers. \
 When using a _layer 3 MPLS VPN_, the CE and PE routers peer using OSPF (or any other routing protocol), to share routing information. Or the customer could just write static routes using the PE routers as the next hop.
 
+For example, in the diagram above, Office A's CE will peer with one PE and Office B's CE will peer with the other PE. Then, office A's CE will learn about office B's routes via *OSPF peering, and office B's CE will learn office A's routes too. This is a Layer 3 MPLS VPN.
+
+When using _layer 2 MPLS VPN_, the CE and PE routers do not form a peering. So the entire service provider network is transparent to the CE routers. Although the CE routers will physically connect to a PE router, it is in effect like two CE routers are directly connected. Their WA? interfaces will be in the same subnet. \
+If a routing protocol is used, the two CE routers will peer directly with each other. In this case the service provider network is still running MPLS just like before, but it's doing so in a way that it's like the entire service provider network is just a big switch connecting the two CE routers together.
+
+MPLS is a technology that runs in the service provider network, but many different technologies, many different kinds of connections, can be used to actually connect to the service provider's MPLS network for WAN service.
+
+Here is a little example:
+
+![Connetions](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/connections_to_sp.png?raw=true "Connections")
+
+They will all connect to each other through the service provider.
+
 <h4 align="center">Internet connectivity</h4>
 
 <h4 align="center">Internet VPNs</h4>
