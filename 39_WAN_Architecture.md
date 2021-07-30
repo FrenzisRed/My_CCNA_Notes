@@ -97,7 +97,7 @@ To provide secure communications over the internet, VPNs (Virtual Private Networ
 - Site-to-Site VPNs using IPsec
 - Remote-access VPNs using TLS
 
-<h4 align="center">Site-to-Site VPNs using IPsec</h4>:
+<h3 align="center">Site-to-Site VPNs using IPsec</h3>:
 
 A site-to-Site VPN is a VPN between two devices and is used to connect two sites together over the internet. \
 A VPN 'tunnel' is created between the two devices by encapsulating the original IP packet with a VPN header and a new IP header. When using IPsec, the original packet is encrypted before being encapsulated with the new header. This is what makes IPsec secure.
@@ -143,4 +143,27 @@ To summarize, DMVPN provides the configuration simplicity of hub-and-spoke (each
 
 Be aware that some company may want all traffic to go through the hub router so a central firewall can control the traffic, but many do not want it as the mesh spoke-to-spoke is more efficient.
 
-<h4 align="center">Remote-access VPNs</h4>:
+<h3 align="center">Remote-access VPNs:</h3>
+
+Whereas site-to-site VPNs are used to make a point-to-point connection between two sites over the internet,remote-access VPNs are used to allow en devices (PCs, mobile phones) to access the company's internal resources securely over the internet.
+
+Remote-access VPNs typically use TLS ( transport Layer Security), TLS is also what provides security for HTTPS. TLS formerly known as SSL (secure socket layer) and developed by Netscape, but it was renamed to TLS when it was standardized by the IETF.
+
+VPN client software (for example Cisco AnyConnect) is installed on end devices (company laptops used from home).
+
+These end devices then form secure tunnels to one of the company's routers/firewalls acting as a TLS server. This allows the end users to securely access resources on the company's internal network without being directly connected to the company network.
+
+Let's visualize it:
+
+![Remote-Access](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/remote_access.png?raw=true "Remote-access")
+
+<h3 align="center">Site-to-Site vs Remote-access VPN:</h3>
+
+- <b>Site-to-Site</b> VPNs typically use IPsec  
+- <b>Remote-access</b> VPNs typically use TLS.
+- ----------
+- <b>Site-to-Site</b> VPNs provide service to many devices within the sites they are connecting.
+- <b>Remote-access</b> VPNs provide service to the one end device the VPN client software is installed on.
+- ----------
+- <b>Site-to-Site</b> VPNs are typically used to permanently connect two sites over the internet.
+- <b>Remote-access</b> VPNs are typically used to provide on-demand access for end devices that want to securely access company resources while connected to a network which is not secure.
