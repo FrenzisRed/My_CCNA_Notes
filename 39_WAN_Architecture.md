@@ -63,4 +63,32 @@ There are countless way for an enterprise to connect to the internet, for exampl
 In addition, technologies such as CATV and DSL commonly used by consumers (home internet access) can also be used by an Enterprise. \
 These days, for both enterprise and consumer internet access, fiber optic Ethernet connections are growing in popularity due to the high speeds they provide over long distances.
 
+Let's briefly look at two internet access technologies: CATV and DSL.
+
+<b>DSL</b>: Digital Subscriber Line provides internet connectivity to customers over phone lines, and can share the same phone line that is already installed in most homes. There is an extra device here that we did not talk about yet, that is the modem. \
+
+![DSL](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/CATV_DSL.png?raw=true "Diagram")
+
+A modem, which stands for modulator-demodulator, is required to convert data into a format suitable to be sent over the phone lines. \
+The modem might be a separate device, as in the diagram, or it might be incorporated into a home router.
+
+This connect the network to the service provider over the phone lines. But there is another common kind of communication line installed in most homes that can also be used for internet access: Cable Internet.
+
+![CATV](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/CATV.png?raw=true "Diagram")
+
+Cable Internet provides internet access via the same CATV (Cable Television) lines used for TV service.
+
+Like DSL, a cable modem is required to convert data into a format suitable to be sent over the CATV cables. And as for DSL, this can be a separate device or built in the home router.
+
+
+Now, for a home user, having one connection to the internet isn't a problem. it's a bit annoying if we lose Internet access, but it's not a disaster. However, for many companies Internet access is essential to their operations. So, it's best to have redundant Internet connections, and there are a few terms we should know:
+
+- If we have 1 connection to 1 ISP, it's called <b>Single Homed</b>.
+- If we have 2 connections to that same ISP, it's called <b>Dual Homed</b>.
+- If we have 1 connection to each of 2 ISPs it's called <b>Multihomed</b> #better redundancy
+- If we have 2 connections to each of 2 ISPs it's called <b>Dual Multihomed</b> #most redundancy
+
 <h4 align="center">Internet VPNs</h4>
+
+Private WAN services such as leased lines and MPLS provide security because each customer's traffic is separated by using dedicated physical connections (leased lines) or by MPLS tags. \
+When using the internet as a WAN to connect sites together, there is no built-in security by default.
