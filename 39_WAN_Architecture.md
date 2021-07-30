@@ -55,6 +55,12 @@ Here is a little example:
 
 They will all connect to each other through the service provider.
 
+For the CCNA exam we should know that MPLS uses labels to forward traffic, not IP addresses. We should know the terms CE routers, PE routers and P routers. We should know that Layer 3 MPLS VPNs have CE routers and PE routers forming peerings using a routing protocol such as OSPF, whereas in Layer 2 MPLS VPNs it as if the CE routers are all directly connected to each other. The service provider routers are completely transparent and acting like a switch connecting the CE routers together.
+
 <h4 align="center">Internet connectivity</h4>
+
+There are countless way for an enterprise to connect to the internet, for example, private WAN technologies such as leased and MPLS VPNs can be used to connect ti a service provider's internet infrastructure. \
+In addition, technologies such as CATV and DSL commonly used by consumers (home internet access) can also be used by an Enterprise. \
+These days, for both enterprise and consumer internet access, fiber optic Ethernet connections are growing in popularity due to the high speeds they provide over long distances.
 
 <h4 align="center">Internet VPNs</h4>
