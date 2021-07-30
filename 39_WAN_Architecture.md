@@ -91,4 +91,56 @@ Now, for a home user, having one connection to the internet isn't a problem. it'
 <h4 align="center">Internet VPNs</h4>
 
 Private WAN services such as leased lines and MPLS provide security because each customer's traffic is separated by using dedicated physical connections (leased lines) or by MPLS tags. \
-When using the internet as a WAN to connect sites together, there is no built-in security by default.
+When using the internet as a WAN to connect sites together, there is no built-in security by default. \
+To provide secure communications over the internet, VPNs (Virtual Private Networks) are used. Here we will see two kinds of VPNs:
+
+- Site-to-Site VPNs using IPsec
+- Remote-access VPNs using TLS
+
+<h4 align="center">Site-to-Site VPNs using IPsec</h4>:
+
+A site-to-Site VPN is a VPN between two devices and is used to connect two sites together over the internet. \
+A VPN 'tunnel' is created between the two devices by encapsulating the original IP packet with a VPN header and a new IP header. When using IPsec, the original packet is encrypted before being encapsulated with the new header. This is what makes IPsec secure.
+
+Here is a very basic small diagram to show how it works:
+
+![IPsec](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/IPsec_VPN.png?raw=true "IPsec")
+
+Explanations:
+- The sending device combines the original packet and session key (encryption key) and runs them through an encryption formula.
+- The sending device encapsulates the encrypted packet with a VPN header and a new IP header.
+- The sending device sends the new packet to the device on the other side of the tunnel.
+- The receiving device decrypts the data to get the original packet, and then forwards the original packet to its destination.
+
+In a 'site-to-site' VPN, a tunnel is formed only between two tunnels endpoints (for example, the two routers connected to the internet).
+
+All other devices in each site don't need to create a VPN for themselves. They can send unencrypted data to their site's router, which will encrypt it and forward it in the tunnel as described above.
+
+There are some limitations to standard IPsec:
+
+- IPsec doesn't support broadcast and multicast traffic, only unicast. This means that routing protocols such as OSPF can't be used over the tunnels, because they rely on multicast traffic. (This can be solved with 'GRE over IPsec' - see below).
+- Configuring a full mesh of tunnels between many sites is a labor-intensive task. ( this can also be solved with Cisco's DMVPN
+)
+
+Just a brief description of <b>GRE over IPsec</b>:
+
+GRE ( Generic Routing Encapsulation) creates tunnels like IPsec, however it does not encrypt the original packet, so it's not secure.
+However it has the advantage of being able to encaplsulate a wide variety of Layer 3 protocols as well as broadcast and multicast messages. So to get the flexibility of GRE with the security of IPsec, GRE over IPsec can be used. The original packet will be encapsulated by GRE header and then a new IP header, and then the GRE packet will be encrypted and encapsulated within an IPsec VPN header and a new IP header.
+
+<b>DMVPN</b>:
+
+DMVPN (Dynamic Multipoint VPN) is a Cisco-developed solution that allows routers to dynamically create a full mesh of IPsec tunnels without having to manually configure every single tunnel.
+
+To simplify, we configure IPsec tunnels to a hub site:
+
+![hub site](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/hub_site.png?raw=true "IPsec hub site")
+
+Then the hub router gives each router information about how to forman IPsec tunnel with the other routers.
+
+![IPsec Mesh](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/IPsec_mesh.png?raw=true "Mesh")
+
+To summarize, DMVPN provides the configuration simplicity of hub-and-spoke (each spoke router only needs one tunnel configured) and efficency of direct spoke-to-spoke communication (spoke routers can communicate directly without traffic passing through the hub).
+
+Be aware that some company may want all traffic to go through the hub router so a central firewall can control the traffic, but many do not want it as the mesh spoke-to-spoke is more efficient.
+
+<h4 align="center">Remote-access VPNs</h4>:
