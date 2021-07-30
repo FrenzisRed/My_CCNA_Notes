@@ -32,6 +32,15 @@ Some important terms:
 - PE router = Provider Edge router
 - P router  = Provider core router
 
+As an example:
+
+![Routers](https://github.com/FrenzisRed/My_CCNA_Notes/blob/main/images/routers.png?raw=true "Routers")
+
+When the PE routers receive frames from the CE routers, they add a label to the frame. This label is actually placed in between the layer 2 Ethernet header and the Layer 3 IP header, so sometime MPLS is called a Layer 2.5 protocol. \
+These labels are the used to make forwarding decisions within the service provider network, not the destination IP.
+
+The CE routers do not use MPLS, it is only used by the PE/P routers. \
+When using a _layer 3 MPLS VPN_, the CE and PE routers peer using OSPF (or any other routing protocol), to share routing information. Or the customer could just write static routes using the PE routers as the next hop.
 
 <h4 align="center">Internet connectivity</h4>
 
